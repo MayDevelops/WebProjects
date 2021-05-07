@@ -1,0 +1,131 @@
+li {
+  display: inline;
+  float: left;
+}
+
+li a {
+  display: flex;
+  color: #373949;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  height: 50px;
+}
+
+.links {
+  display: flex;
+  justify-content: flex-end;
+  color: #333;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+.links .getStarted {
+  background-color: #4347a9;
+  margin-left: 5px;
+  margin-right: 0px;
+  justify-content: flex-end;
+  color: white;
+  text-align: center;
+  border: solid 1px #333;
+  border-radius: 5px;
+}
+
+.links .signIn {
+  margin-left: 5px;
+  justify-content: flex-end;
+}
+
+.link .signInField {
+  float: right;
+  background-color: white;
+  border: 1px solid black;
+  height: 25px;
+  margin-top: 10px;
+  margin-right: 5px;
+  justify-content: flex-end;
+}
+
+.gap {
+  width: 150px;
+}
+
+.bodyRow {
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  width: 100%;
+}
+
+.imageContainer {
+  height: 500px;
+  width: 500px;
+  margin: 10px;
+}
+
+.textContainer {
+  height: 500px;
+  width: 500px;
+  margin: 10px;
+}
+
+.textContainer h2 {
+  color: #373949;
+  word-wrap: normal;
+  font-size: 50px;
+  margin: 5px;
+  margin-bottom: 25px;
+}
+
+.textContainer p {
+  color: #373949;
+  word-wrap: normal;
+  font-size: larger;
+  margin: 5px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.textContainerLinks {
+  display: flex;
+  justify-content: flex-start;
+  color: #333;
+  text-align: center;
+  margin: 5px;
+}
+
+.textContainerLinks .getStarted {
+  background-color: #4347a9;
+  margin-left: 5px;
+  margin-right: 0px;
+  justify-content: flex-start;
+  color: white;
+  text-align: center;
+  border: solid 1px #333;
+  border-radius: 5px;
+  height: 25px;
+}
+
+.textContainerLinks .signInField {
+  float: right;
+  background-color: white;
+  border: 1px solid black;
+  height: 25px;
+  margin-right: 5px;
+  justify-content: flex-start;
+}
