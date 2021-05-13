@@ -4,3 +4,6 @@
 [submodule "JavaScript-Playground/debugging-javascript"]
 	path = JavaScript-Playground/debugging-javascript
 	url = https://github.com/BYU-CS-260/debugging-javascript.git
+[submodule "lab-2-weather-app-MayDevelops"]
+	path = lab-2-weather-app-MayDevelops
+	url = https://github.com/BYU-CS-260-Spring-2021/lab-2-weather-app-MayDevelops.git
