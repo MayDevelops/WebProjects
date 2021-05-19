@@ -13,3 +13,6 @@
 [submodule "vue-todo"]
 	path = vue-todo
 	url = https://github.com/BYU-CS-260/vue-todo.git
+[submodule "lab-3a-vue-xkcd-browser-MayDevelops"]
+	path = lab-3a-vue-xkcd-browser-MayDevelops
+	url = https://github.com/BYU-CS-260-Spring-2021/lab-3a-vue-xkcd-browser-MayDevelops.git
