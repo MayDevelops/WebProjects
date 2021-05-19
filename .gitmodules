@@ -10,3 +10,6 @@
 [submodule "learning-vue"]
 	path = learning-vue
 	url = https://github.com/BYU-CS-260/learning-vue.git
+[submodule "vue-todo"]
+	path = vue-todo
+	url = https://github.com/BYU-CS-260/vue-todo.git
