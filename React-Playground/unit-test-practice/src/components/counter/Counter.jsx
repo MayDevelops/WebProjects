@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import "./Counter.css";
 
 function Counter() {
+    //all javascript goes here. VAriables, functions, whatever.
+    // curly brackets mean "write javascript code"
 
     const [counterValue, setCounterValue] = useState(0);
     const [inputValue, setInputValue] = useState(1);
