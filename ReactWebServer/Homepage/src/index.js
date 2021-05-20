@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Container } from './counter/container';
 import {Provider} from 'react-redux';
-import { store } from './counter/configure-store';
+import { buttonStore } from './Data/configure-store';
+
 
 
 ReactDOM.render(
-    <Provider store={store}>
-        {/*<App />*/}
-        <Container />
+    <Provider store={buttonStore}>
+        <App />
     </Provider>,
     document.getElementById('root')
 );

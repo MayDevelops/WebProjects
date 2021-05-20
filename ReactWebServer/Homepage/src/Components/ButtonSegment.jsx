@@ -1,15 +1,11 @@
 import React from 'react';
 
-const ButtonSegment = () => {
-    return (
-        <div className="buttonWrapper">
-            <div className="center">
-                <button>Previous</button>
-                <button>Next</button>
-                <button>Random</button>
-            </div>
+export const ButtonSegment = ({handlePreviousClick, handleNextClick, handleRandomClick}) => (
+    <div className="buttonWrapper">
+        <div className="center">
+            <button onClick={handlePreviousClick}>Previous</button>
+            <button onClick={handleNextClick}>Next</button>
+            <button onClick={handleRandomClick}>Random</button>
         </div>
-    );
-}
-
-export default ButtonSegment;
+    </div>
+);
