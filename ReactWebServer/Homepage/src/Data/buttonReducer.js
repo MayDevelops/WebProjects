@@ -1,30 +1,33 @@
-
-
 const initialState = {
-    url: 'https://xkcd.now.sh/?comic=latest',
+    url: 'https://xkcd.now.sh/?comic=700',
     month: '',
-    number: 10,
+    num: 700,
     year: '',
     news: '',
     safe_title: '',
     transcript: '',
     alt: '',
-    img: 'https://imgs.xkcd.com/comics/dimensional_chess.png',
+    img: 'https://imgs.xkcd.com/comics/complexion.png',
     title: '',
     day: ''
 }
 
 export const buttonReducer = function (state = initialState, action) {
     switch (action.type) {
+        case "FIRST":
+            return ({
+                ...state,
+                num: action.payload.num,
+                url: action.payload.url,
+                img: action.payload.img
+            })
         case "PREVIOUS":
-            if (state.number === 1) {
+            if (state.num === 1) {
                 return state;
             } else {
-                // console.log('In previous State number: ' + state.number + '  state url: ' + state.url);
-                // console.log('action payload testing: ' + action.payload.test);
                 return ({
                     ...state,
-                    number: action.payload.number,
+                    num: action.payload.num,
                     url: action.payload.url,
                     img: action.payload.img
                 })
@@ -32,14 +35,21 @@ export const buttonReducer = function (state = initialState, action) {
         case "NEXT":
             return ({
                 ...state,
-                number: action.payload.number,
+                num: action.payload.num,
                 url: action.payload.url,
                 img: action.payload.img
             })
         case "RANDOM":
             return ({
                 ...state,
-                number: action.payload.number,
+                num: action.payload.num,
+                url: action.payload.url,
+                img: action.payload.img
+            })
+        case "LAST":
+            return ({
+                ...state,
+                num: action.payload.num,
                 url: action.payload.url,
                 img: action.payload.img
             })
@@ -47,4 +57,3 @@ export const buttonReducer = function (state = initialState, action) {
             return state;
     }
 };
-

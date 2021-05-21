@@ -1,76 +1,128 @@
 import {buttonStore} from "./store";
 
-
-export const getComic = (sentType) => async (dispatch, getState) => {
-    console.log(sentType);
-    const url = getState().url;
-    // console.log(url);
+export const getFirstComic = (sentType) => async (dispatch, getState) => {
+    const url = 'https://xkcd.now.sh/?comic=1';
     const response = await fetch(url)
         .then(res => res.json());
-    // console.log(response);
+    let num = parseInt(response.num);
 
-    // console.log('Calling dispatch: ' + buttonStore.getState().url);
-    console.log(response.img);
-    let int = parseInt(response.num);
-    let randomInt = (Math.ceil(Math.random() * 100));
+    buttonStore.dispatch({
+        type: sentType,
+        payload: {
+            url: 'https://xkcd.now.sh/?comic=',
+            month: response.month,
+            num: num,
+            year: response.year,
+            news: response.news,
+            safe_title: response.safe_title,
+            transcript: response.transcript,
+            alt: response.alt,
+            img: response.img,
+            title: response.title,
+            day: response.day
+        }
+    })
+}
 
-    if(sentType === "PREVIOUS") {
-        buttonStore.dispatch({
-            type: "PREVIOUS",
-            payload: {
-                url: 'https://xkcd.now.sh/?comic=' + (int - 1),
-                month: response.month,
-                number: int - 1,
-                year: response.year,
-                news: response.news,
-                safe_title: response.safe_title,
-                transcript: response.transcript,
-                alt: response.alt,
-                img: response.img,
-                title: response.title,
-                day: response.day
-            }
-        })
-    } else if (sentType === "NEXT") {
-        buttonStore.dispatch({
-            type: "NEXT",
-            payload: {
-                url: 'https://xkcd.now.sh/?comic=' + (int + 1),
-                month: response.month,
-                number: int + 1,
-                year: response.year,
-                news: response.news,
-                safe_title: response.safe_title,
-                transcript: response.transcript,
-                alt: response.alt,
-                img: response.img,
-                title: response.title,
-                day: response.day
-            }
-        })
-    } else {
-        buttonStore.dispatch({
-            type: "RANDOM",
-            payload: {
-                url: 'https://xkcd.now.sh/?comic=' + (randomInt),
-                month: response.month,
-                number: randomInt,
-                year: response.year,
-                news: response.news,
-                safe_title: response.safe_title,
-                transcript: response.transcript,
-                alt: response.alt,
-                img: response.img,
-                title: response.title,
-                day: response.day
-            }
-        })
-    }
+export const getPreviousComic = (sentType) => async (dispatch, getState) => {
+    let bs = buttonStore.getState();
+    const urlInt = parseInt(bs.num);
+    const url = 'https://xkcd.now.sh/?comic=' + (urlInt - 1);
+    const response = await fetch(url)
+        .then(res => res.json());
 
+    let num = parseInt(response.num);
 
-    // console.log(buttonStore.getState());
+    buttonStore.dispatch({
+        type: "PREVIOUS",
+        payload: {
+            url: 'https://xkcd.now.sh/?comic=',
+            month: response.month,
+            num: num,
+            year: response.year,
+            news: response.news,
+            safe_title: response.safe_title,
+            transcript: response.transcript,
+            alt: response.alt,
+            img: response.img,
+            title: response.title,
+            day: response.day
+        }
+    })
+}
+export const getNextComic = (sentType) => async (dispatch, getState) => {
+    let bs = buttonStore.getState();
+    const urlInt = parseInt(bs.num);
+    const url = 'https://xkcd.now.sh/?comic=' + (urlInt + 1);
+    const response = await fetch(url)
+        .then(res => res.json());
 
-    // buttonStore.subscribe(() => {
-    //     console.log("Store Changed!", buttonStore.getState());
-    // });
+    let num = parseInt(response.num);
+
+    buttonStore.dispatch({
+        type: "NEXT",
+        payload: {
+            url: 'https://xkcd.now.sh/?comic=',
+            month: response.month,
+            num: num,
+            year: response.year,
+            news: response.news,
+            safe_title: response.safe_title,
+            transcript: response.transcript,
+            alt: response.alt,
+            img: response.img,
+            title: response.title,
+            day: response.day
+        }
+    })
+}
+export const getRandomComic = (sentType) => async (dispatch, getState) => {
+    let randomNum = (Math.ceil(Math.random() * 100));
+    const url = 'https://xkcd.now.sh/?comic=' + (randomNum);
+    const response = await fetch(url)
+        .then(res => res.json());
+
+    let num = parseInt(response.num);
+
+    buttonStore.dispatch({
+        type: sentType,
+        payload: {
+            url: 'https://xkcd.now.sh/?comic=',
+            month: response.month,
+            num: num,
+            year: response.year,
+            news: response.news,
+            safe_title: response.safe_title,
+            transcript: response.transcript,
+            alt: response.alt,
+            img: response.img,
+            title: response.title,
+            day: response.day
+        }
+    })
+}
+
+export const getLastComic = (sentType) => async (dispatch, getState) => {
+    const url = 'https://xkcd.now.sh/?comic=latest';
+    const response = await fetch(url)
+        .then(res => res.json());
+
+    let num = parseInt(response.num);
+
+    buttonStore.dispatch({
+        type: sentType,
+        payload: {
+            url: 'https://xkcd.now.sh/?comic=',
+            month: response.month,
+            num: num,
+            year: response.year,
+            news: response.news,
+            safe_title: response.safe_title,
+            transcript: response.transcript,
+            alt: response.alt,
+            img: response.img,
+            title: response.title,
+            day: response.day
+        }
+    })
 }

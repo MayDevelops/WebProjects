@@ -3,7 +3,7 @@ import {ButtonSegment} from '../Components/ButtonSegment';
 
 const mapStateToProps = state => {
     return {
-        number: state.number,
+        num: state.num,
         url: state.url,
         month: state.month,
         year: state.year,
@@ -14,7 +14,6 @@ const mapStateToProps = state => {
         img: state.img,
         title: state.title,
         day: state.day
-
     };
 };
 const mapDispatchToProps = dispatch => {

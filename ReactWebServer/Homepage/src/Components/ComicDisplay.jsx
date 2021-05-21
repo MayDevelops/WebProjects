@@ -6,9 +6,9 @@ class ComicDisplay extends Component {
     render() {
         return (
             <div>
-                <h1>{this.props.number}</h1>
+                <h1>{this.props.num}</h1>
                 <h1>{this.props.url}</h1>
-                <img src = {this.props.img}/>
+                <img src={this.props.img} alt=''/>
             </div>
         )
     }
@@ -16,7 +16,7 @@ class ComicDisplay extends Component {
 
 const mapStateToProps = state => {
     return {
-        number: state.number,
+        num: state.num,
         url: state.url,
         img: state.img
     };
