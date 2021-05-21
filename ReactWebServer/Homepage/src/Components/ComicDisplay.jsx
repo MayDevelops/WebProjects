@@ -1,25 +1,25 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './ComicDisplay.css';
+import {connect} from 'react-redux';
 
-const Child = ({data}) => {
-    console.log('in child: ');
-
-    console.log(data);
-    return (
-        <div>
-            <p>{data.img}</p>
-            <p>{data.number}</p>
-            <p>{data.url}</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-
-
-        </div>
-    );
+class ComicDisplay extends Component {
+    render() {
+        return (
+            <div>
+                <h1>{this.props.number}</h1>
+                <h1>{this.props.url}</h1>
+                <img src = {this.props.img}/>
+            </div>
+        )
+    }
 };
 
-export default Child;
+const mapStateToProps = state => {
+    return {
+        number: state.number,
+        url: state.url,
+        img: state.img
+    };
+};
+
+export default connect(mapStateToProps, null)(ComicDisplay);

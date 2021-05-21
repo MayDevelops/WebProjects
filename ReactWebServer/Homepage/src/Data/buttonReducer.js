@@ -1,36 +1,49 @@
-export const buttonReducer = function (state = {
+
+
+const initialState = {
     url: 'https://xkcd.now.sh/?comic=latest',
-    month: '5',
-    number: 2465,
-    year: '2021',
+    month: '',
+    number: 10,
+    year: '',
     news: '',
-    safe_title: 'Dimensional Chess',
+    safe_title: '',
     transcript: '',
-    alt: 'In Dimensional Chess, every move is annotated \'?!\'.',
-    img: '',
-    title: 'Dimensional Chess',
-    day: '19'
-}, action) {
+    alt: '',
+    img: 'https://imgs.xkcd.com/comics/dimensional_chess.png',
+    title: '',
+    day: ''
+}
+
+export const buttonReducer = function (state = initialState, action) {
     switch (action.type) {
         case "PREVIOUS":
             if (state.number === 1) {
                 return state;
             } else {
-                console.log('In previous State number: ' + state.number + '  state url: ' + state.url);
+                // console.log('In previous State number: ' + state.number + '  state url: ' + state.url);
+                // console.log('action payload testing: ' + action.payload.test);
                 return ({
-                    number: state.number - 1,
-                    url: ('https://xkcd.now.sh/?comic=' + (state.number - 1))
+                    ...state,
+                    number: action.payload.number,
+                    url: action.payload.url,
+                    img: action.payload.img
                 })
             }
         case "NEXT":
-            console.log('In next State number: ' + state.number + '  state url: ' + state.url);
-            return {number: state.number + 1, url: 'https://xkcd.now.sh/?comic=' + (state.number + 1)};
+            return ({
+                ...state,
+                number: action.payload.number,
+                url: action.payload.url,
+                img: action.payload.img
+            })
         case "RANDOM":
-            console.log('In math State number: ' + state.number + '  state url: ' + state.url);
-            let r = (Math.ceil(Math.random() * 100));
-            return {number: r, url: 'https://xkcd.now.sh/?comic=' + r};
+            return ({
+                ...state,
+                number: action.payload.number,
+                url: action.payload.url,
+                img: action.payload.img
+            })
         default:
-            console.log('In default State number: ' + state.number + '  state url: ' + state.url);
             return state;
     }
 };

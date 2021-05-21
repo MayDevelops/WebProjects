@@ -19,9 +19,9 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        handlePreviousClick: () => dispatch({type: 'PREVIOUS'}),
-        handleNextClick: () => dispatch({type: 'NEXT'}),
-        handleRandomClick: () => dispatch({type: 'RANDOM'})
+        previousClick: () => dispatch({type: 'PREVIOUS'}),
+        nextClick: () => dispatch({type: 'NEXT'}),
+        randomClick: () => dispatch({type: 'RANDOM'})
     }
 };
 export const ButtonContainer = connect(mapStateToProps, mapDispatchToProps)(ButtonSegment);

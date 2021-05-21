@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
-import { buttonStore } from './Data/configure-store';
+import { buttonStore } from './Data/store';
 
 
 
