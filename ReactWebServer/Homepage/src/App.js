@@ -3,7 +3,7 @@ import './Components/Header';
 import Header from "./Components/Header";
 import {ButtonContainer} from "./Data/buttonContainer";
 import ComicDisplay from "./Components/ComicDisplay";
-import FormEntry from "./Components/FormEntry";
+import {FormEntry} from "./Components/FormEntry";
 
 function App() {
   return (

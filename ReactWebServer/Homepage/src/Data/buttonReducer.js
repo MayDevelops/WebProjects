@@ -9,7 +9,8 @@ const initialState = {
     alt: '',
     img: 'https://imgs.xkcd.com/comics/complexion.png',
     title: '',
-    day: ''
+    day: '',
+    comments: [{}]
 }
 
 export const buttonReducer = function (state = initialState, action) {
@@ -52,6 +53,11 @@ export const buttonReducer = function (state = initialState, action) {
                 num: action.payload.num,
                 url: action.payload.url,
                 img: action.payload.img
+            })
+        case "ADD":
+            return ({
+                ...state,
+                comments: [...state.comments, action.payload.newComment]
             })
         default:
             return state;

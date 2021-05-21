@@ -126,3 +126,18 @@ export const getLastComic = (sentType) => async (dispatch, getState) => {
         }
     })
 }
+
+export const addComment = (sentType, setUserName, setUserComment) => async (dispatch, getState) => {
+
+    buttonStore.dispatch({
+        type: sentType,
+        payload: {
+            newComment: {
+                userName: setUserName,
+                userComment: setUserComment
+            }
+        }
+    })
+
+    console.log(buttonStore.getState().comments);
+}

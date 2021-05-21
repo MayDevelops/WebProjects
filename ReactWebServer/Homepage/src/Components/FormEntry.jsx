@@ -1,25 +1,64 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {connect, useDispatch} from "react-redux";
+import {addComment} from "../Data/asyncActions";
 
-const FormEntry = () => {
-    return (
-        <div>
-            <form>
-                <label>
-                    Name:
-                    <input type="text" name="name" />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-            <form>
-                <label>
-                    Comment:
-                    <input type="text" name="comment" />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
+export const FormEntry = () => {
+    const [username, setUserName] = useState('');
+    const [userComment, setUserComment] = useState('')
 
-        </div>
-    );
+    const dispatch = useDispatch();
+
+    const handleAddComment = () => {
+        dispatch(addComment("ADD",username, userComment));
+    }
+
+
+
+        if(username !== '' && userComment !== '') {
+            return (
+            <div>
+                <form>
+                    <label>
+                        Name:
+                        <input onChange={event => setUserName(event.target.value)}/>
+                    </label>
+                </form>
+                <form>
+                    <label>
+                        Comment:
+                        <input onChange={event => setUserComment(event.target.value)}/>
+                    </label>
+                </form>
+                <h1>{username} {userComment}</h1>
+                <button onClick={handleAddComment}>SUBMIT NAMES BIT</button>
+            </div>
+
+            );
+    } else {
+            return (
+                <div>
+                    <form>
+                        <label>
+                            Name:
+                            <input onChange={event => setUserName(event.target.value)}/>
+                        </label>
+                    </form>
+                    <form>
+                        <label>
+                            Comment:
+                            <input onChange={event => setUserComment(event.target.value)}/>
+                        </label>
+                    </form>
+                </div>
+            );
+        }
+
+
+
 };
 
-export default FormEntry;
+const mapStateToProps = state => ({
+    comments: state.comments
+});
+
+export const a = connect(mapStateToProps)(FormEntry);
