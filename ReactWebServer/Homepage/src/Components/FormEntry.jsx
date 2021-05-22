@@ -10,7 +10,7 @@ export const FormEntry = () => {
     const dispatch = useDispatch();
 
     const handleAddComment = () => {
-        dispatch(addComment("ADD",username, userComment));
+        dispatch(addComment("ADD", username, userComment));
         setUserComment('');
         cancelCourse();
     }
@@ -20,8 +20,8 @@ export const FormEntry = () => {
     }
 
 
-        if(username !== '' && userComment !== '') {
-            return (
+    if (username !== '' && userComment !== '') {
+        return (
             <div className="formWrapper">
                 <form>
                     <label>
@@ -35,29 +35,28 @@ export const FormEntry = () => {
                         <input onChange={event => setUserComment(event.target.value)}/>
                     </label>
                 </form>
-                <button onClick={handleAddComment}>Submit Comment</button>
+                <button className="bottomFormSpacer" onClick={handleAddComment}>Submit Comment</button>
             </div>
 
-            );
+        );
     } else {
-            return (
-                <div className="formWrapper">
-                    <form>
-                        <label>
-                            Name:
-                            <input onChange={event => setUserName(event.target.value)}/>
-                        </label>
-                    </form>
-                    <form>
-                        <label>
-                            Comment:
-                            <input onChange={event => setUserComment(event.target.value)}/>
-                        </label>
-                    </form>
-                </div>
-            );
-        }
-
+        return (
+            <div className="formWrapper">
+                <form>
+                    <label>
+                        Name:
+                        <input onChange={event => setUserName(event.target.value)}/>
+                    </label>
+                </form>
+                <form>
+                    <label>
+                        Comment:
+                        <input onChange={event => setUserComment(event.target.value)}/>
+                    </label>
+                </form>
+            </div>
+        );
+    }
 
 
 };

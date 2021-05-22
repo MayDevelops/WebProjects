@@ -159,9 +159,7 @@ export const addStars = (sentType, setRating, needsParsing) => async (dispatch, 
         payload: {
             newRating: {
                 comicNum: comicNumber,
-                ratings: {
-                    stars: stars
-                }
+                stars: stars
             }
         }
     })

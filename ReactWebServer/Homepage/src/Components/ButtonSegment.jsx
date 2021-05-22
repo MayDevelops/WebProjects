@@ -1,6 +1,6 @@
 import React from 'react';
 import './ButtonSegment.css';
-import {getFirstComic, getLastComic,getNextComic,getPreviousComic,getRandomComic} from "../Data/asyncActions";
+import {getFirstComic, getLastComic, getNextComic, getPreviousComic, getRandomComic} from "../Data/asyncActions";
 import {connect, useDispatch} from "react-redux";
 
 export const ButtonSegment = () => {
@@ -24,11 +24,11 @@ export const ButtonSegment = () => {
 
     return (
         <div className="buttonWrapper">
-                <button onClick={handleFirstClick}>First</button>
-                <button onClick={handlePreviousClick}>Previous</button>
-                <button onClick={handleNextClick}>Next</button>
-                <button onClick={handleRandomClick}>Random</button>
-                <button onClick={handleLastClick}>Last</button>
+            <button onClick={handleFirstClick}>First</button>
+            <button onClick={handlePreviousClick}>Previous</button>
+            <button onClick={handleNextClick}>Next</button>
+            <button onClick={handleRandomClick}>Random</button>
+            <button onClick={handleLastClick}>Last</button>
         </div>
     );
 };

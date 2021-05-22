@@ -11,7 +11,7 @@ import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfie
 import Box from '@material-ui/core/Box';
 
 import {connect, useDispatch} from "react-redux";
-import { addStars} from "../Data/asyncActions";
+import {addStars} from "../Data/asyncActions";
 import './StarRating.css';
 
 

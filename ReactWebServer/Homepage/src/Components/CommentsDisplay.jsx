@@ -12,6 +12,7 @@ class CommentsDisplay extends Component {
             if (comicNumber === comments[i].comicNum) {
                 loopJS += '<ul>';
                 loopJS += '<li>';
+                loopJS += comments[i].userName + ' - ';
                 loopJS += comments[i].userComment;
                 loopJS += '<i>' + ' - ' + comments[i].time + '</i>'
                 loopJS += '</li>';
