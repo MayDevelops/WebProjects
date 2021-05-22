@@ -78,7 +78,7 @@ export const getNextComic = (sentType) => async (dispatch, getState) => {
     })
 }
 export const getRandomComic = (sentType) => async (dispatch, getState) => {
-    let randomNum = (Math.ceil(Math.random() * 100));
+    let randomNum = (Math.floor(Math.random() * 2465) + 1);
     const url = 'https://xkcd.now.sh/?comic=' + (randomNum);
     const response = await fetch(url)
         .then(res => res.json());
