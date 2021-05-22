@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './FormEntry.css';
 import {connect, useDispatch} from "react-redux";
 import {addComment} from "../Data/asyncActions";
 
@@ -10,33 +11,37 @@ export const FormEntry = () => {
 
     const handleAddComment = () => {
         dispatch(addComment("ADD",username, userComment));
+        setUserComment('');
+        cancelCourse();
     }
 
+    const cancelCourse = () => {
+        document.getElementById("form").reset();
+    }
 
 
         if(username !== '' && userComment !== '') {
             return (
-            <div>
+            <div className="formWrapper">
                 <form>
                     <label>
                         Name:
                         <input onChange={event => setUserName(event.target.value)}/>
                     </label>
                 </form>
-                <form>
+                <form id="form">
                     <label>
                         Comment:
                         <input onChange={event => setUserComment(event.target.value)}/>
                     </label>
                 </form>
-                <h1>{username} {userComment}</h1>
-                <button onClick={handleAddComment}>SUBMIT NAMES BIT</button>
+                <button onClick={handleAddComment}>Submit Comment</button>
             </div>
 
             );
     } else {
             return (
-                <div>
+                <div className="formWrapper">
                     <form>
                         <label>
                             Name:

@@ -5,14 +5,13 @@
 
 .buttonWrapper {
     position: relative;
-    border: 3px solid greenyellow;
     margin-top: 10px;
 }
 
 .comicWrapper {
     position: relative;
-    border: 5px solid black;
     margin-top: 10px;
+    margin-left: 10px;
 }
 
 .center {
@@ -22,18 +21,14 @@
 }
 
 img {
-    width: 200px;
-    height: 400px;
     text-align: center;
 }
 
 span {
     display: flex;
     margin-top: 10px;
-    border: 1px solid blue;
 }
 
 .verticalSpacer {
     height: 10px;
-    background: grey;
 }

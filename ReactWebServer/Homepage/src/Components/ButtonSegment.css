@@ -4,13 +4,12 @@
 }
 
 .buttonWrapper {
-    position: relative;
-    border: 3px solid greenyellow;
+    display: flex;
     margin-top: 10px;
+    margin-left: 10px;
 }
 
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+button {
+    margin: 2px;
+    border-radius: 2px;
 }

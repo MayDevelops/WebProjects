@@ -1,4 +1,5 @@
 import {buttonStore} from "./store";
+import moment from "moment";
 
 export const getFirstComic = (sentType) => async (dispatch, getState) => {
     const url = 'https://xkcd.now.sh/?comic=1';
@@ -128,16 +129,40 @@ export const getLastComic = (sentType) => async (dispatch, getState) => {
 }
 
 export const addComment = (sentType, setUserName, setUserComment) => async (dispatch, getState) => {
+    let bs = buttonStore.getState();
+    const urlInt = parseInt(bs.num);
 
     buttonStore.dispatch({
         type: sentType,
         payload: {
             newComment: {
+                comicNum: urlInt,
                 userName: setUserName,
-                userComment: setUserComment
+                userComment: setUserComment,
+                time: moment().format('LLL')
             }
         }
     })
+}
 
-    console.log(buttonStore.getState().comments);
+export const addStars = (sentType, setRating, needsParsing) => async (dispatch, getState) => {
+    let bs = buttonStore.getState();
+    let stars;
+    const comicNumber = parseInt(bs.num);
+    if (needsParsing) {
+        stars = parseInt(setRating);
+    } else {
+        stars = setRating;
+    }
+    buttonStore.dispatch({
+        type: sentType,
+        payload: {
+            newRating: {
+                comicNum: comicNumber,
+                ratings: {
+                    stars: stars
+                }
+            }
+        }
+    })
 }
