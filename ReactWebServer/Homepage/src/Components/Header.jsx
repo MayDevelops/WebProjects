@@ -4,7 +4,7 @@ import './Header.css';
 const Header = () => {
     return (
         <div>
-            <h1>XDCD Browser</h1>
+            <h1>XKCD Browser</h1>
         </div>
     );
 };

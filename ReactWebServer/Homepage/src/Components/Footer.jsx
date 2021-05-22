@@ -1,10 +1,16 @@
 import React from 'react';
 import './Footer.css';
+import GitHubLogo from '../images/GitHub-Mark-64px.png';
 
 const Footer = () => {
     return (
         <div className="github">
-            <a href="https://github.com/MayDevelops/WebProjects/tree/master/ReactWebServer/Homepage">GitHub</a>
+            <div className="center">
+                <a href="https://github.com/MayDevelops/WebProjects/tree/master/ReactWebServer/Homepage">
+                <img src={GitHubLogo} alt=""/>
+
+                </a>
+            </div>
         </div>
     );
 };

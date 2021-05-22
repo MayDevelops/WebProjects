@@ -9,3 +9,8 @@ form {
 .bottomFormSpacer {
     margin-bottom: 10px;
 }
+
+textarea {
+    width: 250px;
+    height: 150px;
+}
