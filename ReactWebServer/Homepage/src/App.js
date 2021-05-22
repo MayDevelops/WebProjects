@@ -7,6 +7,7 @@ import {FormEntry} from "./Components/FormEntry";
 import CommentsDisplay from "./Components/CommentsDisplay";
 import {CustomizedRatings} from "./Components/StarRating";
 import AverageStars from "./Components/AverageStars";
+import Footer from "./Components/Footer";
 
 function App() {
     return (
@@ -18,7 +19,7 @@ function App() {
             <AverageStars/>
             <FormEntry/>
             <CommentsDisplay/>
-
+            <Footer/>
         </div>
     );
 }
