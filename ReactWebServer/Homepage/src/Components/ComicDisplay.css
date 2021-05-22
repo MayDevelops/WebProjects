@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.buttonWrapper {
+    position: relative;
+    margin-top: 10px;
+}
+
+.comicWrapper {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    text-align: center;
+}
+
+span {
+    display: flex;
+    margin-top: 10px;
+}
+
+.verticalSpacer {
+    height: 10px;
+}
