@@ -1,10 +1,14 @@
 import './App.css';
 import './components/Header'
 import Header from "./components/Header";
+import ProductCard from "./components/ProductCard";
 
 function App() {
   return (
-    <Header />
+      <div className="App">
+        <Header/>
+        <ProductCard />
+      </div>
   );
 }
 

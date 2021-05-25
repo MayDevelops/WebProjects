@@ -1,6 +1,6 @@
 import React from 'react';
-import Browse from './Browse'
 import './Header.css';
+
 import Logo from '../images/logo.png';
 import Globe from '../images/globe.png';
 import Love from '../images/love.png';
