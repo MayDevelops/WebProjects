@@ -40,7 +40,7 @@ import {
     Turtle_Beans, Yellow_Tomatoes, Yukon_Potatoes
 } from '../images/products/'
 
-let mock = [{
+export const mock = [{
     id: 1,
     name: "Egg Salad",
     price: "$5.62",

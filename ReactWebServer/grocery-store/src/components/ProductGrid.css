@@ -65,3 +65,7 @@ button {
 .auto {
     margin-left: auto;
 }
+
+.center {
+    margin-top: 25px;
+}

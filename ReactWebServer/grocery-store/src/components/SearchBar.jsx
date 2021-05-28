@@ -1,29 +1,34 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import './SearchBar.css'
+import {connect, useDispatch} from "react-redux";
+import {sendFilter} from "../data/actions";
 
 
-class SearchBar extends Component {
-    render() {
+export const SearchBar = () => {
+    const [filter, setFilter] = useState('');
+
+    const dispatch = useDispatch();
+
+    const handleSetFilter = (incomingFilter) => {
+        setFilter(incomingFilter);
+        dispatch(sendFilter("FILTER", incomingFilter));
+    }
+
         return (
             <div>
                 <div className="wrapper">
                     <div className="search">
                         <form className="pure-form">
-                            <i className="fas fa-search"/><input/>
+                            <input className="fas fa-search" onChange={event => handleSetFilter(event.target.value)}/>
                         </form>
                     </div>
                 </div>
     </div>
         );
-    }
 };
 
-export default SearchBar;
+const mapStateToProps = state => ({
+    filter: state.filter
+})
 
-/**
- * Quick thoughts before I retire to mattress:
- * The search bar needs to filter asynchronously, as I type the items should be filtered.
- *      -First just worry about type and click.
- *      -Second, set up useState to be able to constantly display whatever is in the state
- *      -Third, going to have to link it all up to the store to be able to do this...?
- */
+export const a = connect(mapStateToProps)(SearchBar);
