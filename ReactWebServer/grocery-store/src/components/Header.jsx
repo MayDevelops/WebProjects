@@ -1,49 +1,60 @@
-import React from 'react';
+import React, {Component, useState} from 'react';
 import './Header.css';
 
 import Logo from '../images/logo.png';
 import Globe from '../images/globe.png';
 import Love from '../images/love.png';
 
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
-import Browse from "./Browse";
-import Cart from "./Cart";
-import Home from "./Home";
+class Header extends Component {
+    render() {
+        function toBrowse() {
+            window.location = '/browse';
+        }
 
-const Header = () => {
-    return (
-        <div id="app">
-            <div id="menu">
-                <Router>
+        function toHome() {
+            window.location = '/';
+        }
+
+        function toCart() {
+            window.location = '/cart';
+        }
+
+        return (
+            <div id="app">
+                <div id="menu">
                     <div id="brand">
-                        <Link to="/">
+                        <Link to="#" onClick={toHome}>
                             <img src={Logo} alt=''/>
                         </Link>
                     </div>
                     <div id="side">
                         <div className="menu-item browse">
-                            <Link to="/browse">
+                            <Link to="#" onClick={toBrowse}>
                                 <img src={Globe} alt=''/>
                                 <p>Browse</p>
                             </Link>
                         </div>
                         <div className="menu-item">
-                            <Link to="/cart">
+                            <Link to="#" onClick={toCart}>
                                 <img src={Love} alt=''/>
-                                <p>0 items</p>
+                                <p>{this.props.cart.length} items</p>
                             </Link>
                         </div>
                     </div>
-                </Router>
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    };
 
-export default Header;
+}
+
+const mapStateToProps = state => {
+    return {
+        cart: state.cart
+    };
+}
+
+export default connect(mapStateToProps, null)(Header);

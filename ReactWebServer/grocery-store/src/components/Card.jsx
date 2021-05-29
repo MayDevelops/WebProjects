@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import './ProductGrid.css'
+import {connect} from "react-redux";
 
 class Card extends Component{
     render() {
         const sentProps = this.props.sentProps;
+
+
+
         return (
             <div className="wrapper">
                     <div className="products">
@@ -17,7 +21,7 @@ class Card extends Component{
                             </div>
                             <div className="price">
                                 <h2>{sentProps.price}</h2>
-                                <button className="auto">Add to Cart</button>
+                                <button className="auto" onClick={() => {this.props.updateCart(this.props.sentProps)}}>Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -26,4 +30,16 @@ class Card extends Component{
     };
 };
 
-export default Card;
+const mapStateToProps = state => {
+    return {
+       cart: state.cart
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateCart: (item) => dispatch({type: "ADD", payload: item})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

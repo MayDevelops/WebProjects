@@ -8,3 +8,12 @@ export const sendFilter = (sentType, filter) => async (dispatch, getState) => {
         }
     })
 }
+
+export const sendFilterCountry = (sentType, filterCountry) => async (dispatch, getState) => {
+    store.dispatch({
+        type: sentType,
+        payload: {
+            filterCountry: filterCountry
+        }
+    })
+}

@@ -1,17 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './SearchBar.css'
 import {connect, useDispatch} from "react-redux";
 import {sendFilter} from "../data/actions";
 
-
 export const SearchBar = () => {
-    const [filter, setFilter] = useState('');
 
     const dispatch = useDispatch();
 
     const handleSetFilter = (incomingFilter) => {
-        setFilter(incomingFilter);
-        dispatch(sendFilter("FILTER", incomingFilter));
+        dispatch(sendFilter("FILTER", incomingFilter.toString().toLowerCase()));
     }
 
         return (

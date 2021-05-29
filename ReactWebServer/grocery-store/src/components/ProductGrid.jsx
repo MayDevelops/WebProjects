@@ -6,14 +6,22 @@ import emptyImage from '../images/empty.png'
 
 class ProductGrid extends Component {
     render() {
+        let filterCountry = this.props.filterCountry;
         let filter = this.props.filter;
         let items = this.props.storeData;
         let filteredItems = [];
         let renItems = [];
 
-        if (filter !== '') {
+        if (filter !== '' && filterCountry === '') {
             for (let i = 0; i < items.length; i++) {
-                if (((items[i].name).toString().toLowerCase()).includes((filter).toString().toLowerCase())) {
+                if (((items[i].name).toString().toLowerCase()).includes((filter))) {
+                    filteredItems.push(items[i])
+                }
+            }
+            items = filteredItems;
+        } else if (filterCountry !== '') {
+            for (let i = 0; i < items.length; i++) {
+                if (((items[i].country).toString().toLowerCase()).includes((filterCountry))) {
                     filteredItems.push(items[i])
                 }
             }
@@ -121,7 +129,8 @@ class ProductGrid extends Component {
 const mapStateToProps = state => {
     return {
         storeData: state.storeData,
-        filter: state.filter
+        filter: state.filter,
+        filterCountry: state.filterCountry
     };
 }
 
