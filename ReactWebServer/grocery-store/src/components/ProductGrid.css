@@ -66,6 +66,12 @@ button {
     margin-left: auto;
 }
 
+.auto:hover {
+    transition-duration: .25s;
+    background: rgb(40,40,40);
+    cursor: pointer;
+}
+
 .center {
     margin-top: 25px;
 }

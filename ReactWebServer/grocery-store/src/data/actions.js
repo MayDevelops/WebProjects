@@ -1,7 +1,7 @@
-import {store} from "./store";
+import configureStore from "./store";
 
 export const sendFilter = (sentType, filter) => async (dispatch, getState) => {
-    store.dispatch({
+    configureStore.dispatch({
         type: sentType,
         payload: {
             filter: filter
@@ -10,7 +10,7 @@ export const sendFilter = (sentType, filter) => async (dispatch, getState) => {
 }
 
 export const sendFilterCountry = (sentType, filterCountry) => async (dispatch, getState) => {
-    store.dispatch({
+    configureStore.dispatch({
         type: sentType,
         payload: {
             filterCountry: filterCountry

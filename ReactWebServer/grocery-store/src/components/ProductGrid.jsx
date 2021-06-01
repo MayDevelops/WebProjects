@@ -3,16 +3,17 @@ import './ProductGrid.css';
 import {connect} from "react-redux";
 import Card from "./Card";
 import emptyImage from '../images/empty.png'
+import PropTypes from "prop-types";
 
 class ProductGrid extends Component {
     render() {
-        let filterCountry = this.props.filterCountry;
-        let filter = this.props.filter;
-        let items = this.props.storeData;
+        let filterCountry = this.props.data.filterCountry;
+        let filter = this.props.data.filter;
+        let items = this.props.data.storeData;
         let filteredItems = [];
         let renItems = [];
 
-        if (filter !== '' && filterCountry === '') {
+        if (filterCountry === '') {
             for (let i = 0; i < items.length; i++) {
                 if (((items[i].name).toString().toLowerCase()).includes((filter))) {
                     filteredItems.push(items[i])
@@ -126,12 +127,18 @@ class ProductGrid extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        storeData: state.storeData,
-        filter: state.filter,
-        filterCountry: state.filterCountry
-    };
+ProductGrid.propTypes = {
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+    hash: PropTypes.string,
 }
+
+const mapStateToProps = state => ({
+    pathname: state.router.location.pathname,
+    search: state.router.location.search,
+    hash: state.router.location.hash,
+
+    data: state.data
+})
 
 export default connect(mapStateToProps, null)(ProductGrid);

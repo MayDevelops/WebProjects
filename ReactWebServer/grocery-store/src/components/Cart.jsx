@@ -4,13 +4,14 @@ import ProductGrid from "./ProductGrid";
 import emptyImage from "../images/empty.png";
 import Card from "./Card";
 import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 class Cart extends Component {
     render() {
-        let cart = this.props.cart;
-        let items = this.props.storeData;
-        let renItems = [];
+        let cart = this.props.data.cart;
+        let items = this.props.data.storeData;
 
+        let renItems = [];
         if (cart.length === 0) {
             return (
                 <div className="center wrapper">
@@ -20,7 +21,7 @@ class Cart extends Component {
             );
 
         } else {
-
+            items = cart;
             let loopy = [];
             for (let i = 0; i < (items.length / 5); i++) {
                 loopy.push(i);
@@ -96,6 +97,7 @@ class Cart extends Component {
                     )
                 }
             });
+            console.log(this.props.data);
             return (
                 <Fragment>
                     <table>
@@ -109,13 +111,18 @@ class Cart extends Component {
     }
 };
 
-const mapStateToProps = state => {
-    return {
-        storeData: state.storeData,
-        filter: state.filter,
-        filterCountry: state.filterCountry,
-        cart: state.cart
-    };
+Cart.propTypes = {
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+    hash: PropTypes.string,
 }
+
+const mapStateToProps = state => ({
+    pathname: state.router.location.pathname,
+    search: state.router.location.search,
+    hash: state.router.location.hash,
+
+    data: state.data
+})
 
 export default connect(mapStateToProps)(Cart);
