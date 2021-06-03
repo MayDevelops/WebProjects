@@ -15,7 +15,7 @@
     </div>
     <div class="footer">
       <router-link to="/admin">Admin</router-link>
-      <p><a href="#######">GITHUB LINK</a></p>
+      <p><a href="https://github.com/MayDevelops/WebProjects/tree/master/lab-4-museum-of-ordinary-objects-MayDevelops">GITHUB</a></p>
     </div>
   </div>
 </template>
