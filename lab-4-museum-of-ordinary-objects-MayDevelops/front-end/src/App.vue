@@ -1,22 +1,23 @@
 <template>
-<div id="app">
-  <div class="header">
-    <router-link to="/">
-      <div class="logo">
-        <img src="/ordinary.png">
+  <div id="app">
+    <div class="header">
+      <router-link to="/">
+        <div class="logo">
+          <img src="/ordinary.png">
+        </div>
+      </router-link>
+      <div class="title">
+        <h1>Museum of Ordinary Objects</h1>
       </div>
-    </router-link>
-    <div class="title">
-      <h1>Museum of Ordinary Objects</h1>
+    </div>
+    <div class="content">
+      <router-view/>
+    </div>
+    <div class="footer">
+      <router-link to="/admin">Admin</router-link>
+      <p><a href="#######">GITHUB LINK</a></p>
     </div>
   </div>
-  <div class="content">
-    <router-view />
-  </div>
-  <div class="footer">
-    <router-link to="/admin">Admin</router-link>
-  </div>
-</div>
 </template>
 
 <style>
@@ -32,7 +33,6 @@ body {
   margin: 0px;
 }
 
-/* Header */
 .header {
   display: flex;
   padding: 10px 100px 0px 100px;
@@ -53,7 +53,6 @@ body {
   min-height: 500px;
 }
 
-/* Footer */
 .footer {
   height: 50px;
   padding: 20px 100px 0px 100px;

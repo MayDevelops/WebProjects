@@ -18,6 +18,7 @@ mongoose.connect('mongodb://localhost:27017/todo', {
     useUnifiedTopology: true
 });
 
+
 // Create a scheme for projects
 const projectSchema = new mongoose.Schema({
     name: String,
@@ -36,6 +37,17 @@ app.post('/api/projects', async (req, res) => {
     try {
         await project.save();
         res.send(project);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
+// Get a list of all projects
+app.get('/api/projects', async (req, res) => {
+    try {
+        let projects = await Project.find();
+        res.send(projects);
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
