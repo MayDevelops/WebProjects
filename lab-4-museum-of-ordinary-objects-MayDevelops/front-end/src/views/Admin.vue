@@ -92,7 +92,7 @@ export default {
         this.description = "";
         this.file = null;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async getItems() {
@@ -101,7 +101,7 @@ export default {
         this.items = response.data;
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     selectItem(item) {
@@ -115,7 +115,7 @@ export default {
         this.getItems();
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async editItem(item) {
@@ -128,7 +128,7 @@ export default {
         this.getItems();
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
   }
