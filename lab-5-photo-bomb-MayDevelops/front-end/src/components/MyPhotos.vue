@@ -46,7 +46,6 @@ export default {
       try {
         this.response = await axios.get("/api/photos");
         this.photos = this.response.data;
-        console.log(this.response);
       } catch (error) {
         this.error = error.response.data.message;
       }

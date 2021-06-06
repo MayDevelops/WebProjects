@@ -29,6 +29,8 @@ const photoSchema = new mongoose.Schema({
     },
 });
 
+
+
 const Photo = mongoose.model('Photo', photoSchema);
 
 
@@ -95,7 +97,10 @@ router.get("/:id", async (req,res) => {
         console.log(error)
         return res.sendStatus(500);
     }
-})
+});
+
+
+
 
 module.exports = {
     model: Photo,
