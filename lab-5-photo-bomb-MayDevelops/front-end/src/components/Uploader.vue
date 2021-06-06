@@ -12,13 +12,13 @@
           </fieldset>
           <fieldset>
             <div class="imageInput" @click="chooseImage">
-              <img v-if="url" :src="url" />
+              <img v-if="url" :src="url"/>
               <div v-if="!url" class="placeholder">
                 Choose an Image
               </div>
               <input class="fileInput" ref="fileInput" type="file" @input="fileChanged">
             </div>
-            <p v-if="error" class="error">{{error}}</p>
+            <p v-if="error" class="error">{{ error }}</p>
           </fieldset>
           <fieldset class="buttons">
             <button type="button" @click="close" class="pure-button">Close</button>
@@ -32,6 +32,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   name: 'Uploader',
   props: {

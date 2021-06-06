@@ -2,12 +2,14 @@
   <div>
     <section class="image-gallery">
       <div class="image" v-for="photo in photos" v-bind:key="photo._id">
-        <img :src="photo.path" />
-        <div class="photoInfo">
-          <p class="photoTitle">{{photo.title}}</p>
-          <p class="photoName">{{photo.user.firstName}} {{photo.user.lastName}}</p>
-        </div>
-        <p class="photoDate">{{formatDate(photo.created)}}</p>
+        <router-link :to="{ name: 'Photo', params: { id: photo._id }}"><img :src="photo.path">
+          <!--          <img :src="photo.path" />-->
+          <div class="photoInfo">
+            <p class="photoTitle">{{ photo.title }}</p>
+            <p class="photoName">{{ photo.user.firstName }} {{ photo.user.lastName }}</p>
+          </div>
+          <p class="photoDate">{{ formatDate(photo.created) }}</p>
+        </router-link>
       </div>
     </section>
   </div>

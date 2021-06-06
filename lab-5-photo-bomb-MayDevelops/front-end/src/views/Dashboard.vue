@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
-    <MyPhotos v-if="user" />
-    <Login v-else />
+    <MyPhotos v-if="user"/>
+    <Login v-else/>
   </div>
 </template>
 
@@ -9,6 +9,7 @@
 import MyPhotos from '@/components/MyPhotos.vue';
 import Login from '@/components/Login.vue';
 import axios from 'axios';
+
 export default {
   name: 'dashboard',
   components: {

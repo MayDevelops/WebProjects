@@ -78,13 +78,24 @@ router.get("/all", async (req, res) => {
             created: -1
         }).populate('user');
 
-        console.log(res);
         return res.send(photos);
     } catch (error) {
         console.log(error);
         return res.sendStatus(500);
     }
 });
+
+router.get("/:id", async (req,res) => {
+    try {
+        let photo = await Photo.findById(req.params.id).sort({
+            created: -1
+        }).populate('user');
+        return res.send(photo);
+    } catch (error) {
+        console.log(error)
+        return res.sendStatus(500);
+    }
+})
 
 module.exports = {
     model: Photo,

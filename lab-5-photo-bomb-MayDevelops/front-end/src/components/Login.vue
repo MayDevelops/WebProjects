@@ -15,7 +15,7 @@
           <button type="submit" class="pure-button pure-button-primary" @click.prevent="register">Register</button>
         </fieldset>
       </form>
-      <p v-if="error" class="error">{{error}}</p>
+      <p v-if="error" class="error">{{ error }}</p>
       <form class="pure-form space-above">
         <fieldset>
           <legend>Login</legend>
@@ -26,13 +26,14 @@
           <button type="submit" class="pure-button pure-button-primary" @click.prevent="login">Login</button>
         </fieldset>
       </form>
-      <p v-if="errorLogin" class="error">{{errorLogin}}</p>
+      <p v-if="errorLogin" class="error">{{ errorLogin }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+
 export default {
   name: 'HomePage',
   data() {
@@ -93,6 +94,7 @@ export default {
 
 h1 {
   font-size: 28px;
+  /*noinspection CssInvalidPropertyValue*/
   font-variant: capitalize;
 }
 

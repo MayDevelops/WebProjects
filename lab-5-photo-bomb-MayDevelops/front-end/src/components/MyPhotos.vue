@@ -2,11 +2,11 @@
   <div class="main">
     <div class="menu">
       <p><a @click="toggleUpload"><i class="fas fa-image"></i></a></p>
-      <h2>{{user.firstName}} {{user.lastName}} <a @click="logout"><i class="fas fa-sign-out-alt"></i></a></h2>
-      <uploader :show="show" @close="close" @uploadFinished="uploadFinished" />
+      <h2>{{ user.firstName }} {{ user.lastName }} <a @click="logout"><i class="fas fa-sign-out-alt"></i></a></h2>
+      <uploader :show="show" @close="close" @uploadFinished="uploadFinished"/>
     </div>
-    <image-gallery :photos="photos" />
-    <p v-if="error">{{error}}</p>
+    <image-gallery :photos="photos"/>
+    <p v-if="error">{{ error }}</p>
   </div>
 </template>
 
@@ -14,6 +14,7 @@
 import axios from 'axios';
 import Uploader from '@/components/Uploader.vue';
 import ImageGallery from '@/components/ImageGallery.vue';
+
 export default {
   name: 'MyPhotos',
   components: {
@@ -45,6 +46,7 @@ export default {
       try {
         this.response = await axios.get("/api/photos");
         this.photos = this.response.data;
+        console.log(this.response);
       } catch (error) {
         this.error = error.response.data.message;
       }

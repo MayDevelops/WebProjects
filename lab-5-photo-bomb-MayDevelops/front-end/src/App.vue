@@ -7,7 +7,7 @@
         <router-link to="/dashboard"><i class="fas fa-user"></i></router-link>
       </nav>
     </header>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
