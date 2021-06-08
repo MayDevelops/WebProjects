@@ -18,9 +18,7 @@ const commentSchema = new mongoose.Schema({
 const Comment = mongoose.model('Comment', commentSchema);
 
 
-
 router.get('/:id', async (req, res) => {
-    console.log(req.params.id);
     try {
         let comments = await Comment.find({
             photo: req.params.id

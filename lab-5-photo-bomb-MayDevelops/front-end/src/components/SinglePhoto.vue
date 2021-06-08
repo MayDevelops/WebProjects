@@ -3,29 +3,28 @@
     <div class="heroBox">
       <img :src="photo.path">
       <div class="photoInfo">
-        <p class="photoTitle">{{ photo.title }} - {{ photo.description }}</p>
-        <p class="photoName">{{ user.username }}</p>
+        <p class="photoTitle"><strong>{{ photo.title }}</strong> - <i>{{ photo.description }}</i></p>
+        <p class="photoName">{{ user.username }} - {{ formatDate(photo.created) }}</p>
       </div>
-      <p class="photoDate">{{ formatDate(photo.created) }}</p>
+
+      <hr>
 
       <div v-if="loggedInUser">
-        <form class="pure-form" @submit.prevent="addTicket">
-          <legend>Describe your problem for us.</legend>
+        <form class="pure-form" @submit.prevent>
+          <legend>Leave a comment</legend>
           <fieldset>
             <textarea v-model="comment"></textarea>
             <br/>
             <button @click="cancelCreating" class="pure-button space-right">Cancel</button>
-            <button class="pure-button pure-button-primary" type="submit">Submit</button>
+            <button @click="addTicket" class="pure-button pure-button-primary" type="submit">Submit</button>
           </fieldset>
         </form>
-        <div v-for="ticket in tickets">
-          <div class="ticket">
-            <div class="problem">
-              <h3><label>{{ ticket.user }}</label> - {{ time(ticket.created) }}</h3>
-              <p>{{ ticket.comment }}</p>
-              <!--              <p v-if="ticket.response"><i>{{ ticket.response }}</i></p>-->
-              <!--              <p v-else><i>No response yet</i></p>-->
-            </div>
+      </div>
+      <div v-for="comment in comments">
+        <div class="ticket">
+          <div class="problem">
+            <h3><label>{{ comment.user }}</label> - {{ time(comment.created) }}</h3>
+            <p>"{{ comment.comment }}"</p>
           </div>
         </div>
       </div>
@@ -34,18 +33,6 @@
     </div>
   </div>
 </template>
-
-<!--
-Right now I can't get the root photo information to load initially when the component is
-initialized. I'm trying to get the root photo info before the component is fully loaded so I can send that to the
-back end api and make the request.
-
-{PHOTO_ID} -> API -> QUERY THE DB FOR ALL PHOTOS WITH THIS ID ->
-TICKETS ARE DISPLAYED TO USER FOR ONLY THIS PHOTO <- RETURNED COMMENTS ARE ASSIGNED TO "TICKETS"(for now...) <- ARRAY OF COMMENTS RETURNED FROM API <-
-
-
-Currently the initial photo id is always null?
--->
 
 <script>
 import axios from 'axios';
@@ -59,7 +46,8 @@ export default {
       user: Object,
       error: '',
       comment: '',
-      tickets: []
+      creating: false,
+      comments: []
     }
   },
   methods: {
@@ -84,11 +72,9 @@ export default {
       return moment(date).format('MMMM d YYYY');
     },
     async getTickets() {
-      console.log(this.$root.$data.photo);
       try {
-        let response = await axios.get("/api/comments/" + this.currentPhoto._id);
-        console.log(response.data);
-        this.tickets = response.data;
+        let response = await axios.get("/api/comments/" + this.$route.params.id);
+        this.comments = response.data;
         return true;
       } catch (error) {
         console.log(error);
@@ -102,6 +88,7 @@ export default {
     },
     cancelCreating() {
       this.creating = false;
+      this.comment = '';
     },
     async addTicket() {
       try {
@@ -110,6 +97,8 @@ export default {
           photo: this.photo,
           comment: this.comment,
         });
+        this.comment = '';
+        this.creating = false;
         this.getTickets();
         return true;
       } catch (error) {
@@ -177,5 +166,9 @@ input {
   font-size: 10px;
   background-color: #d9534f;
   color: #fff;
+}
+
+.photoInfo {
+  font-size: larger;
 }
 </style>

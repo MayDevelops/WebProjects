@@ -1,8 +1,9 @@
 <template>
   <div class="main">
     <div class="menu">
-      <p><a @click="toggleUpload"><i class="fas fa-image"></i></a></p>
-      <h2>{{ user.firstName }} {{ user.lastName }} <a @click="logout"><i class="fas fa-sign-out-alt"></i></a></h2>
+      <p><a @click="toggleUpload"><strong>Upload a Photo</strong> <i class="fas fa-image hover"></i></a></p>
+      <h2><strong>Log Out - </strong> {{ user.firstName }} {{ user.lastName }} <a @click="logout"><i
+          class="fas fa-sign-out-alt hover"></i></a></h2>
       <uploader :show="show" @close="close" @uploadFinished="uploadFinished"/>
     </div>
     <image-gallery :photos="photos"/>
@@ -75,5 +76,9 @@ export default {
 
 .menu h2 {
   font-size: 14px;
+}
+
+.hover {
+  cursor: pointer;
 }
 </style>
