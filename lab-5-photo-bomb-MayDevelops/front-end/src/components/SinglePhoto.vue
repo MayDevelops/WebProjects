@@ -4,7 +4,7 @@
       <img :src="photo.path">
       <div class="photoInfo">
         <p class="photoTitle"><strong>{{ photo.title }}</strong> - <i>{{ photo.description }}</i></p>
-        <p class="photoName">{{ user.username }} - {{ formatDate(photo.created) }}</p>
+        <p class="photoName">{{ user.username }} - {{ time(photo.created) }}</p>
       </div>
 
       <hr>
