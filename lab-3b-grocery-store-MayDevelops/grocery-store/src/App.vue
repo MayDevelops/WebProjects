@@ -3,20 +3,20 @@
     <div id="menu">
       <div id="brand">
         <router-link to="/">
-          <img src="./images/logo.png">
+          <img src="/images/logo.png">
         </router-link>
       </div>
       <div id="side">
         <router-link to="/browse">
           <div class="menu-item browse">
-            <img src="./images/globe.png">
+            <img src="/images/globe.png">
             <p>Browse</p>
           </div>
         </router-link>
         <router-link to="/cart">
           <div class="menu-item">
-            <img src="./images/love.png">
-            <p>0 items</p>
+            <img src="/images/love.png">
+            <p>{{ totalItems }} items</p>
           </div>
         </router-link>
       </div>
@@ -25,6 +25,23 @@
   </div>
 </template>
 
+<script>
+export default {
+  computed: {
+    totalItems() {
+      const storeData = this.$root.$data.products;
+      let totalItems = 0;
+      for(let i = 0; i < storeData.length; i++) {
+        if(storeData[i].quantity > 0) {
+          totalItems += storeData[i].quantity;
+        }
+      }
+
+      return totalItems;
+    }
+  }
+}
+</script>
 
 <style>
 * {

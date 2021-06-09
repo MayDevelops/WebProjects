@@ -3,15 +3,19 @@
     <div class="products">
       <div class="product" v-for="product in products" :key="product.id">
         <div class="info">
-          <h1>{{product.name}}</h1>
-          <p>{{product.country}}</p>
+          <div class ="quantity">{{product.quantity}}</div>
+
+          <h1>{{ product.name }}</h1>
+          <p>{{ product.country }}</p>
         </div>
         <div class="image">
           <img :src="'/images/products/'+product.image">
         </div>
         <div class="price">
-          <h2>{{product.price}}</h2>
-          <button class="auto" @click="addProductToCart(product)">Add to Cart</button>
+          <h2>{{ product.price }}</h2>
+          <button class="auto" @click="addProductToCart(product)">+</button>
+          <button class="auto" @click="SubProductFromCart(product)">-</button>
+
         </div>
       </div>
     </div>
@@ -20,10 +24,16 @@
 
 <script>
 import {data} from "../main";
+
 export default {
-  name: 'ProductList',
+  name: 'CartProductList',
   props: {
     products: Array
+  },
+  data() {
+    return {
+      cart: []
+    }
   },
   methods: {
     addProductToCart(product) {
@@ -32,7 +42,27 @@ export default {
           data.products[i].quantity++;
         }
       }
+    },
+    SubProductFromCart(product) {
+      for(let i = 0; i < data.products.length; i++) {
+        if(product === data.products[i] && data.products[i].quantity >= 1) {
+          data.products[i].quantity--;
+        }
+      }
     }
+  },
+  created() {
+    let items = data.products;
+
+    for(let i = 0; i < items.length; i++) {
+      if(items[i].quantity > 0) {
+        data.cart.push(items[i]);
+      }
+    }
+
+  },
+  beforeDestroy() {
+    data.cart = [];
   }
 }
 </script>
@@ -104,5 +134,11 @@ button {
 
 .auto {
   margin-left: auto;
+}
+
+.quantity {
+  position: absolute;
+  z-index: 100;
+  margin-left: 140px;
 }
 </style>

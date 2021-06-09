@@ -11,6 +11,8 @@ let data = {
   cart: []
 }
 
+export {data};
+
 new Vue({
   router,
   data,
