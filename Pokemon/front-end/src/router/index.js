@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "@/views/Home";
 import Dashboard from "@/views/Dashboard";
+import Photo from "@/views/Photo";
 
 Vue.use(VueRouter)
 
@@ -16,7 +17,11 @@ const routes = [
         name: 'Dashboard',
         component: Dashboard
     },
-
+    {
+        path: '/pokes/:id',
+        name: 'Photo',
+        component: Photo
+    }
 ]
 
 const router = new VueRouter({

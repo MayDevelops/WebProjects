@@ -4,7 +4,7 @@
       <h2><strong>Log Out - </strong> {{ user.firstName }} {{ user.lastName }} <a @click="logout"><i
           class="fas fa-sign-out-alt hover"></i></a></h2>
     </div>
-    <pokemon-gallery :cards="cards"/>
+    <pokemon-gallery :cards="myPokedex"/>
     <p v-if="error">{{ error }}</p>
   </div>
 </template>
@@ -12,6 +12,7 @@
 <script>
 import axios from 'axios';
 import PokemonGallery from "@/components/PokemonGallery";
+
 export default {
   name: 'MyPhotos',
   components: {
@@ -20,7 +21,7 @@ export default {
   data() {
     return {
       show: false,
-      cards: [],
+      myPokedex: [],
       error: '',
     }
   },
@@ -32,24 +33,28 @@ export default {
   methods: {
     async logout() {
       try {
-        await axios.delete("/api/users");
+        await axios.delete("/api/trainers");
         this.$root.$data.user = null;
       } catch (error) {
         this.$root.$data.user = null;
       }
     },
-    async getPhotos() {
-      try {
-        this.response = await axios.get("/api/photos");
-        this.cards = this.response.data;
-      } catch (error) {
-        this.error = error.response.data.message;
+    async getPokedex() {
+      if (this.$root.$data.pokedex) {
+        for (let i = 0; i < this.$root.$data.pokedex.length; i++) {
+          try {
+            let response = await axios.get("/api/pokes/" + this.$root.$data.pokedex[i]);
+            this.myPokedex.push(response.data);
+          } catch (error) {
+            this.error = error.response.data.message;
+          }
+        }
       }
     },
   },
   created() {
-    this.getPhotos();
-  },
+    this.getPokedex();
+  }
 }
 </script>
 

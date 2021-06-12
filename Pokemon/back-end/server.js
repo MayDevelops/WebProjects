@@ -31,12 +31,12 @@ app.use(cookieSession({
     }
 }));
 
-// import the users module and setup its API path
-const users = require("./users.js");
-app.use("/api/users", users.routes);
+// import the trainers module and setup its API path
+const trainers = require("./trainers.js");
+app.use("/api/trainers", trainers.routes);
 
-const photos = require("./photos.js");
-app.use("/api/photos", photos.routes);
+const pokes = require("./pokes.js");
+app.use("/api/pokes", pokes.routes);
 
 const comments = require("./comments.js");
 app.use("/api/comments", comments.routes);

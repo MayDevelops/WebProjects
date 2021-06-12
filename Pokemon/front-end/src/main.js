@@ -17,7 +17,8 @@ Vue.config.productionTip = false
 
 let data = {
   user: null,
-  cards: null
+  cards: null,
+  pokedex: []
 }
 
 new Vue({

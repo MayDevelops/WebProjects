@@ -1,8 +1,8 @@
 <template>
   <div>
     <section class="pokemon-gallery">
-      <div class="image" v-for="card in cards" v-bind:key="card.id">
-        <router-link :to="{ name: 'Photo', params: { id: card.id }}"><img :src="card.sprites.front_default">
+      <div class="image" v-for="card in cards" v-bind:key="card._id">
+        <router-link :to="{ name: 'Photo', params: { id: card._id }}"><img :src="card.sprite.normal">
           <div class="photoInfo">
             <p class="photoTitle">{{ card.name }}</p>
           </div>
@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 
 export default {
   name: 'PokemonGallery',
@@ -21,12 +20,7 @@ export default {
     cards: Array
   },
   methods: {
-    formatDate(date) {
-      if (moment(date).diff(Date.now(), 'days') < 15)
-        return moment(date).fromNow();
-      else
-        return moment(date).format('d MMMM YYYY');
-    }
+
   }
 }
 </script>

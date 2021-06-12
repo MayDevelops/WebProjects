@@ -55,13 +55,21 @@ export default {
       if (!this.firstName || !this.lastName || !this.username || !this.password)
         return;
       try {
-        let response = await axios.post('/api/users', {
+        let trainerResponse = await axios.post('/api/trainers', {
           firstName: this.firstName,
           lastName: this.lastName,
           username: this.username,
           password: this.password,
         });
-        this.$root.$data.user = response.data.user;
+        this.$root.$data.user = trainerResponse.data.user;
+
+        try {
+          await axios.post('/api/comments/register/' + this.$root.$data.user._id, {
+            user: this.$root.$data.user
+          });
+        } catch (error) {
+          console.log('Failed to create new trainer pokedex');
+        }
       } catch (error) {
         this.error = error.response.data.message;
         this.$root.$data.user = null;
@@ -73,7 +81,7 @@ export default {
       if (!this.usernameLogin || !this.passwordLogin)
         return;
       try {
-        let response = await axios.post('/api/users/login', {
+        let response = await axios.post('/api/trainers/login', {
           username: this.usernameLogin,
           password: this.passwordLogin,
         });
@@ -81,7 +89,16 @@ export default {
       } catch (error) {
         this.errorLogin = "Error: " + error.response.data.message;
         this.$root.$data.user = null;
+        return;
       }
+
+      try {
+        let response = await axios.get('/api/comments/' + this.$root.$data.user._id);
+        this.$root.$data.pokedex = response.data[0].pokedex;
+      } catch (error) {
+        this.$root.$data.pokedex = null;
+      }
+
     },
   }
 }
