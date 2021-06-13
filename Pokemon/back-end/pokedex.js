@@ -2,22 +2,22 @@ const mongoose = require('mongoose');
 const express = require("express");
 const router = express.Router();
 
-const commentSchema = new mongoose.Schema({
-    user: String,
+const pokedexSchema = new mongoose.Schema({
+    trainer: String,
     pokedex: []
 })
 
-const Comment = mongoose.model('Comment', commentSchema);
+const Pokedex = mongoose.model('Pokedex', pokedexSchema);
 
 
 router.get('/:id', async (req, res) => {
     try {
-        let comments = await Comment.find({
-            user: req.params.id
+        let pokedex = await Pokedex.find({
+            trainer: req.params.id
         }).sort({
             created: -1
         });
-        return res.send(comments);
+        return res.send(pokedex);
     } catch (error) {
         console.log(error);
         return res.sendStatus(500);
@@ -27,11 +27,11 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        const query = {user: req.body.user._id};
+        const query = {trainer: req.body.user._id};
         const updateDocument = {
             $set: {'pokedex': req.body.pokedex}
         }
-        const result = await Comment.updateOne(query, updateDocument);
+        const result = await Pokedex.updateOne(query, updateDocument);
         return res.send(result);
     } catch (error) {
         console.log(error);
@@ -42,12 +42,12 @@ router.put('/:id', async (req, res) => {
 
 router.post('/register/:id', async (req, res) => {
     //creating a pokedex attached to the usersID, that big object number in the mongo db
-    const comment = new Comment({
-        user: req.body.user,
+    const pokedex = new Pokedex({
+        trainer: req.body.user,
     });
     try {
-        await comment.save();
-        return res.send(comment);
+        await pokedex.save();
+        return res.send(pokedex);
     } catch (error) {
         console.log(error);
         return res.sendStatus(500);
@@ -55,6 +55,6 @@ router.post('/register/:id', async (req, res) => {
 });
 
 module.exports = {
-    model: Comment,
+    model: Pokedex,
     routes: router
 }

@@ -5,12 +5,12 @@ const argon2 = require("argon2");
 const router = express.Router();
 
 //
-// User schema and model
+// Trainer schema and model
 //
 
 // This is the schema. Users have usernames and passwords. We solemnly promise to
 // salt and hash the password!
-const userSchema = new mongoose.Schema({
+const trainerSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     username: String,
@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
 
 // This is a hook that will be called before a user record is saved,
 // allowing us to be sure to salt and hash the password first.
-userSchema.pre('save', async function(next) {
+trainerSchema.pre('save', async function (next) {
     // only hash the password if it has been modified (or is new)
     if (!this.isModified('password'))
         return next();
@@ -36,10 +36,10 @@ userSchema.pre('save', async function(next) {
     }
 });
 
-// This is a method that we can call on User objects to compare the hash of the
+// This is a method that we can call on Trainer objects to compare the hash of the
 // password the browser sends with the has of the user's true password stored in
 // the database.
-userSchema.methods.comparePassword = async function(password) {
+trainerSchema.methods.comparePassword = async function (password) {
     try {
         // note that we supply the hash stored in the database (first argument) and
         // the plaintext password. argon2 will do the hashing and salting and
@@ -55,34 +55,34 @@ userSchema.methods.comparePassword = async function(password) {
 // object to JSON. It deletes the password hash from the object. This ensures
 // that we never send password hashes over our API, to avoid giving away
 // anything to an attacker.
-userSchema.methods.toJSON = function() {
+trainerSchema.methods.toJSON = function () {
     var obj = this.toObject();
     delete obj.password;
     return obj;
 }
 
-// create a User model from the User schema
-const User = mongoose.model('User', userSchema);
+// create a Trainer model from the Trainer schema
+const Trainer = mongoose.model('Trainer', trainerSchema);
 
 /* Middleware */
 
 // middleware function to check for logged-in users
-const validUser = async (req, res, next) => {
+const validTrainer = async (req, res, next) => {
     if (!req.session.userID)
         return res.status(403).send({
             message: "not logged in"
         });
     try {
-        const user = await User.findOne({
+        const trainer = await Trainer.findOne({
             _id: req.session.userID
         });
-        if (!user) {
+        if (!trainer) {
             return res.status(403).send({
                 message: "not logged in"
             });
         }
-        // set the user field in the request
-        req.user = user;
+        // set the trainer field in the request
+        req.user = trainer;
     } catch (error) {
         // Return an error if user does not exist.
         return res.status(403).send({
@@ -104,7 +104,6 @@ router.post('/', async (req, res) => {
     // Make sure that the form coming from the browser includes all required fields,
     // otherwise return an error. A 400 error means the request was
     // malformed.
-    console.log('CREATING NEW USER');
     if (!req.body.firstName || !req.body.lastName || !req.body.username || !req.body.password)
         return res.status(400).send({
             message: "first name, last name, username and password are required"
@@ -114,7 +113,7 @@ router.post('/', async (req, res) => {
 
         //  Check to see if username already exists and if not send a 403 error. A 403
         // error means permission denied.
-        const existingUser = await User.findOne({
+        const existingUser = await Trainer.findOne({
             username: req.body.username
         });
         if (existingUser)
@@ -122,20 +121,20 @@ router.post('/', async (req, res) => {
                 message: "username already exists"
             });
 
-        // create a new user and save it to the database
-        const user = new User({
+        // create a new trainer and save it to the database
+        const trainer = new Trainer({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             username: req.body.username,
             password: req.body.password
         });
-        await user.save();
-        // set user session info
-        req.session.userID = user._id;
+        await trainer.save();
+        // set trainer session info
+        req.session.userID = trainer._id;
 
-        // send back a 200 OK response, along with the user that was created
+        // send back a 200 OK response, along with the trainer that was created
         return res.send({
-            user: user
+            user: trainer
         });
     } catch (error) {
         console.log(error);
@@ -151,28 +150,28 @@ router.post('/login', async (req, res) => {
         return res.sendStatus(400);
 
     try {
-        //  lookup user record
-        const user = await User.findOne({
+        //  lookup trainer record
+        const trainer = await Trainer.findOne({
             username: req.body.username
         });
-        // Return an error if user does not exist.
-        if (!user)
+        // Return an error if trainer does not exist.
+        if (!trainer)
             return res.status(403).send({
                 message: "username or password is wrong"
             });
 
         // Return the SAME error if the password is wrong. This ensure we don't
         // leak any information about which users exist.
-        if (!await user.comparePassword(req.body.password))
+        if (!await trainer.comparePassword(req.body.password))
             return res.status(403).send({
                 message: "username or password is wrong"
             });
 
-        // set user session info
-        req.session.userID = user._id;
+        // set trainer session info
+        req.session.userID = trainer._id;
 
         return res.send({
-            user: user
+            user: trainer
         });
 
     } catch (error) {
@@ -182,7 +181,7 @@ router.post('/login', async (req, res) => {
 });
 
 // get logged in user
-router.get('/', validUser, async (req, res) => {
+router.get('/', validTrainer, async (req, res) => {
     try {
         res.send({
             user: req.user
@@ -194,7 +193,7 @@ router.get('/', validUser, async (req, res) => {
 });
 
 // logout
-router.delete("/", validUser, async (req, res) => {
+router.delete("/", validTrainer, async (req, res) => {
     try {
         req.session = null;
         res.sendStatus(200);
@@ -207,6 +206,6 @@ router.delete("/", validUser, async (req, res) => {
 
 module.exports = {
     routes: router,
-    model: User,
-    valid: validUser
+    model: Trainer,
+    valid: validTrainer
 };

@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a51142-1c5b-47da-8749-376228cb3a10" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front-end/src/components/ProductList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/comments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/pokedex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/pokes.js" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/pokes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/trainers.js" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/trainers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/components/PokemonGallery.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/PokemonGallery.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/components/SinglePoke.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/SinglePoke.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/views/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/views/Dashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +47,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/front-end/src/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/front-end/src/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -52,14 +59,27 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/front-end/src/views" />
       <recent name="$PROJECT_DIR$/front-end/src/components" />
+      <recent name="$PROJECT_DIR$/front-end/src/views" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/back-end" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/front-end/public" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -73,7 +93,7 @@
       <workItem from="1623299578860" duration="485000" />
       <workItem from="1623364357076" duration="3668000" />
       <workItem from="1623395717675" duration="131000" />
-      <workItem from="1623447300576" duration="42264000" />
+      <workItem from="1623447300576" duration="52119000" />
     </task>
     <servers />
   </component>

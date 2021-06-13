@@ -38,8 +38,8 @@ app.use("/api/trainers", trainers.routes);
 const pokes = require("./pokes.js");
 app.use("/api/pokes", pokes.routes);
 
-const comments = require("./comments.js");
-app.use("/api/comments", comments.routes);
+const pokedex = require("./pokedex.js");
+app.use("/api/pokedex", pokedex.routes);
 
 
 app.listen(3002, () => console.log('Server listening on port 3002!'));

@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const express = require("express");
 const router = express.Router();
 
-// Configure multer so that it will upload to '/public/images'
 const multer = require('multer')
 const upload = multer({
     limits: {
@@ -28,7 +27,6 @@ const pokeSchema = new mongoose.Schema({
     },
     types: [],
 });
-
 
 
 const Poke = mongoose.model('Poke', pokeSchema);
@@ -91,7 +89,7 @@ router.get("/all", async (req, res) => {
     }
 });
 
-router.get("/:id", async (req,res) => {
+router.get("/:id", async (req, res) => {
     try {
         let photo = await Poke.findById(req.params.id).sort({
             created: -1
@@ -102,8 +100,6 @@ router.get("/:id", async (req,res) => {
         return res.sendStatus(500);
     }
 });
-
-
 
 
 module.exports = {

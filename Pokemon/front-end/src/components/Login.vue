@@ -64,7 +64,7 @@ export default {
         this.$root.$data.user = trainerResponse.data.user;
 
         try {
-          await axios.post('/api/comments/register/' + this.$root.$data.user._id, {
+          await axios.post('/api/pokedex/register/' + this.$root.$data.user._id, {
             user: this.$root.$data.user
           });
         } catch (error) {
@@ -93,7 +93,7 @@ export default {
       }
 
       try {
-        let response = await axios.get('/api/comments/' + this.$root.$data.user._id);
+        let response = await axios.get('/api/pokedex/' + this.$root.$data.user._id);
         this.$root.$data.pokedex = response.data[0].pokedex;
       } catch (error) {
         this.$root.$data.pokedex = null;

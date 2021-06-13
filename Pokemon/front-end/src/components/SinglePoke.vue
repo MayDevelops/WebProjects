@@ -1,23 +1,32 @@
 <template>
-  <div class="hero">
-    <div class="heroBox">
-      <img :src="card.sprite.HD" alt="">
-      <div class="photoInfo">
-        <p>card name: {{ card.name }}</p>
+  <div>
+    <div class="title">
+      <div class="heroBox">
+        <div class="pokeTitle">
+          <span>{{ card.name.charAt(0).toUpperCase() + card.name.slice(1) }}</span>
+        </div>
       </div>
+    </div>
+    <div class="hero">
+      <div class="heroBox">
+        <img :src="card.sprite.HD" alt="">
+        <div class="photoInfo">
 
-      <hr>
+        </div>
 
-      <div v-if="loggedInUser">
-        <h1>{{loggedInUser.username}}</h1>
-        <h1>{{currentPokedex}}</h1>
-        <h1 @click="add()">ADD</h1>
-        <h1 @click="release()">RELEASE</h1>
+        <hr>
+
+        <div v-if="loggedInUser">
+          <b-container class="bv-example-row">
+            <b-row>
+              <b-col><h1 class="pokeButton" @click="add()">ADD</h1></b-col>
+              <b-col><h1 class="pokeButton" @click="release()">RELEASE</h1></b-col>
+            </b-row>
+          </b-container>
 
 
+        </div>
       </div>
-
-
     </div>
   </div>
 </template>
@@ -70,7 +79,7 @@ export default {
 
     async getPokedex() {
       try {
-        let response = await axios.get('/api/comments/' + this.$root.$data.user._id);
+        let response = await axios.get('/api/pokedex/' + this.$root.$data.user._id);
         this.$root.$data.pokedex = response.data[0].pokedex;
       } catch (error) {
         this.$root.$data.pokedex = null;
@@ -80,7 +89,7 @@ export default {
       let cards = this.currentPokedex;
       cards.push(this.$route.params.id);
       try {
-        await axios.put('/api/comments/' + this.$route.params.id, {
+        await axios.put('/api/pokedex/' + this.$route.params.id, {
           user: this.$root.$data.user,
           pokedex: cards
         });
@@ -91,21 +100,17 @@ export default {
       }
     },
     async release() {
-      console.log('user: ' + this.$root.$data.user._id);
-      console.log('id: ' + this.$route.params.id);
       let cards = this.currentPokedex;
-      console.log(cards.length);
 
-      for(let i = 0; i < cards.length; i++) {
-        if(cards[i] === this.$route.params.id) {
-          console.log('deleting ' + this.$route.params.id + ' with ' + cards[i]);
-          cards.splice(i,1);
+      for (let i = 0; i < cards.length; i++) {
+        if (cards[i] === this.$route.params.id) {
+          cards.splice(i, 1);
           break;
         }
       }
 
       try {
-        await axios.put('/api/comments/' + this.$route.params.id, {
+        await axios.put('/api/pokedex/' + this.$route.params.id, {
           user: this.$root.$data.user,
           pokedex: cards
         });
@@ -147,7 +152,7 @@ h1 {
 }
 
 .hero {
-  padding: 120px;
+  padding: 100px;
   display: flex;
   justify-content: center;
 }
@@ -180,5 +185,20 @@ input {
 
 .photoInfo {
   font-size: larger;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.pokeTitle {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.pokeButton:hover {
+  cursor: pointer;
 }
 </style>

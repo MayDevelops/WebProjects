@@ -1,8 +1,17 @@
 <template>
   <div class="home">
+    <h1>All Pokemon</h1>
+    <div class="wrapper">
+      <div class="search">
+        <form class="pure-form">
+          <i class="fas fa-search"></i><input v-model="searchText"/>
+        </form>
+      </div>
+    </div>
     <p v-if="error">{{ error }}</p>
     <template v-if="cards.length > 0">
-      <pokemon-gallery :cards="cards"/>
+<!--      <pokemon-gallery :cards="cards"/>-->
+      <ProductList :products="products"/>
     </template>
     <template v-else>
       <p>Please Create an Account or Login to Train Your Pokemon!</p>
@@ -14,20 +23,29 @@
 
 <script>
 import axios from 'axios';
-import PokemonGallery from "@/components/PokemonGallery";
+// import PokemonGallery from "@/components/PokemonGallery";
+import ProductList from "@/components/ProductList";
 
 export default {
   name: 'Home',
   components: {
-    PokemonGallery,
+    ProductList,
+    // PokemonGallery,
   },
   data() {
     return {
       cards: [],
       error: '',
+      searchText: '',
+
     }
   },
-   created() {
+  computed: {
+    products() {
+      return this.cards.filter(product => product.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
+    },
+  },
+  created() {
     //this.POPULATE_INITIAL_DATABASE();
     this.getCards();
   },
@@ -35,7 +53,7 @@ export default {
     POPULATE_INITIAL_DATABASE: async function () {
       this.cards = [];
 
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 7; i <= 9; i++) {
         let response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + i);
         let card = response.data;
         const poke = {
@@ -51,9 +69,6 @@ export default {
 
         await axios.post("/api/pokes", poke);
       }
-
-
-
     },
     async getCards() {
       try {

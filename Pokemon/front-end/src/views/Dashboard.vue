@@ -23,13 +23,6 @@ export default {
     } catch (error) {
       this.$root.$data.user = null;
     }
-
-    try {
-      let response = await axios.get('/api/comments/' + this.$root.$data.user._id);
-      this.$root.$data.pokedex = response.data[0].pokedex;
-    } catch (error) {
-      this.$root.$data.pokedex = null;
-    }
   },
   computed: {
     user() {

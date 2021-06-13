@@ -2,11 +2,10 @@
   <div>
     <section class="pokemon-gallery">
       <div class="image" v-for="card in cards" v-bind:key="card._id">
-        <router-link :to="{ name: 'Photo', params: { id: card._id }}"><img :src="card.sprite.normal">
+        <router-link :to="{ name: 'Photo', params: { id: card._id }}"><img :src="card.sprite.normal"></router-link>
           <div class="photoInfo">
-            <p class="photoTitle">{{ card.name }}</p>
+            <p class="photoTitle">{{ card.name.charAt(0).toUpperCase() + card.name.slice(1) }}</p>
           </div>
-        </router-link>
       </div>
     </section>
   </div>
@@ -28,8 +27,8 @@ export default {
 <style scoped>
 .photoInfo {
   display: flex;
-  justify-content: space-between;
   font-size: 0.8em;
+  justify-content: center;
 }
 
 .photoInfo p {
@@ -43,6 +42,7 @@ export default {
 
 p {
   margin: 0px;
+  text-align: center;
 }
 
 /* Masonry */
