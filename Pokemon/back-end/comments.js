@@ -26,7 +26,6 @@ router.get('/:id', async (req, res) => {
 
 
 router.put('/:id', async (req, res) => {
-    //creating a pokedex attached to the usersID, that big object number in the mongo db
     try {
         const query = {user: req.body.user._id};
         const updateDocument = {
