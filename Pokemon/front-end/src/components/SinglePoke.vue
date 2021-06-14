@@ -20,9 +20,11 @@
           <b-container class="bv-example-row">
             <b-row>
               <b-col><h1 class="pokeButton" @click="add()">ADD</h1></b-col>
-              <b-col><h1 class="pokeButton" @click="release()">RELEASE</h1></b-col>
+              <b-col v-if="numTimes > 0"><h1 class="pokeButton" @click="release()">RELEASE</h1></b-col>
             </b-row>
           </b-container>
+
+<!--          <h2>Times in deck: {{ numTimes }}</h2>-->
 
 
         </div>
@@ -49,7 +51,8 @@ export default {
         },
         types: [],
       },
-      pokedex: []
+      pokedex: [],
+      times: 0
     }
   },
   methods: {
@@ -76,7 +79,6 @@ export default {
         this.$root.$data.user = null;
       }
     },
-
     async getPokedex() {
       try {
         let response = await axios.get('/api/pokedex/' + this.$root.$data.user._id);
@@ -127,6 +129,16 @@ export default {
     },
     currentPokedex() {
       return this.$root.$data.pokedex;
+    },
+    numTimes() {
+      let cards = this.currentPokedex;
+      let thisTimes = 0;
+      for (let i = 0; i < cards.length; i++) {
+        if (cards[i] === this.$route.params.id) {
+          thisTimes++;
+        }
+      }
+      return thisTimes;
     }
   },
   created() {

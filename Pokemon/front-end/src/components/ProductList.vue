@@ -16,21 +16,12 @@
 </template>
 
 <script>
-import {data} from "../main";
 export default {
   name: 'ProductList',
   props: {
     products: Array
   },
-  methods: {
-    addProductToCart(product) {
-      for(let i = 0; i < data.products.length; i++) {
-        if(product === data.products[i]) {
-          data.products[i].quantity++;
-        }
-      }
-    }
-  }
+  methods: {}
 }
 </script>
 
