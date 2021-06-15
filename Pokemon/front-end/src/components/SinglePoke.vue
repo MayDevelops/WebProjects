@@ -10,9 +10,7 @@
     <div class="hero">
       <div class="heroBox">
         <img :src="card.sprite.HD" alt="">
-        <div class="photoInfo">
 
-        </div>
 
         <hr>
 
@@ -24,10 +22,26 @@
             </b-row>
           </b-container>
 
-<!--          <h2>Times in deck: {{ numTimes }}</h2>-->
-
+          <hr>
 
         </div>
+      </div>
+      <div class="types">
+        <b-table-simple small caption-top responsive>
+
+          <b-thead head-variant="dark">
+            <b-tr>
+              <b-th colspan="2">Types</b-th>
+            </b-tr>
+          </b-thead>
+          <b-tbody>
+            <b-tr>
+              <div v-for="type in card.types" v-bind:key="type.id">
+                <b-td>{{ card.types[type.slot - 1].type.name }}</b-td>
+              </div>
+            </b-tr>
+          </b-tbody>
+        </b-table-simple>
       </div>
     </div>
   </div>
@@ -42,7 +56,6 @@ export default {
     return {
       card: {
         trainer: '',
-        abilities: [],
         id: 0,
         name: '',
         sprite: {
@@ -52,7 +65,7 @@ export default {
         types: [],
       },
       pokedex: [],
-      times: 0
+      times: 0,
     }
   },
   methods: {
@@ -60,7 +73,6 @@ export default {
       try {
         this.response = await axios.get("/api/pokes/" + this.$route.params.id);
         this.card.trainer = this.response.data.trainer;
-        this.card.abilities = this.response.data.abilities;
         this.card.id = this.response.data.id;
         this.card.name = this.response.data.name;
         this.card.sprite.normal = this.response.data.sprite.normal;
@@ -212,5 +224,9 @@ input {
 
 .pokeButton:hover {
   cursor: pointer;
+}
+
+.types {
+  padding-left: 50px;
 }
 </style>

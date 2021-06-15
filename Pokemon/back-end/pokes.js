@@ -18,7 +18,6 @@ const pokeSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Trainer'
     },
-    abilities: [],
     id: Number,
     name: String,
     sprite: {
@@ -42,7 +41,6 @@ router.post("/", validUser, upload.single('poke'), async (req, res) => {
 
     const poke = new Poke({
         trainer: req.trainer,
-        abilities: req.body.abilities,
         id: req.body.id,
         name: req.body.name,
         sprite: {

@@ -52,8 +52,16 @@ export default {
       }
     },
   },
-  created() {
+  async created() {
+    try {
+      let response = await axios.get('/api/pokedex/' + this.$root.$data.user._id);
+      this.$root.$data.pokedex = response.data[0].pokedex;
+    } catch (error) {
+      this.$root.$data.pokedex = null;
+    }
+
     this.getPokedex();
+
   }
 }
 </script>

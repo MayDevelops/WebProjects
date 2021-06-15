@@ -57,7 +57,6 @@ export default {
         let response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + i);
         let card = response.data;
         const poke = {
-          abilities: card.abilities,
           id: card.id,
           name: card.name,
           sprite: {
