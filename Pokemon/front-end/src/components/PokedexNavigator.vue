@@ -7,7 +7,7 @@
 
     <select @change="selectPokedex()" v-model="selectedPokedex">
       <option disabled value="">Please select one</option>
-      <option v-for="pokedex in this.$root.$data.trainer.pokedexes" v-bind:key="pokedex._id">{{ pokedex.name }}</option>
+      <option v-for="pokedex in allPokedexes" v-bind:key="pokedex._id">{{ pokedex.name }}</option>
     </select>
     <span>Selected Pokedex: {{ currentPokedexName }}</span>
 
@@ -35,6 +35,9 @@ export default {
     },
     currentPokedexName() {
       return this.selectedPokedex;
+    },
+    allPokedexes() {
+      return this.$root.$data.trainer.pokedexes;
     }
   },
   methods: {
@@ -54,7 +57,10 @@ export default {
       } catch (error) {
         console.log(error);
       }
+      this.$root.$data.selector = (this.$root.$data.trainer.pokedexes.length) - 1;
+      this.selectedPokedex = this.$root.$data.trainer.pokedexes[this.$root.$data.selector].name;
       this.$emit("syncDex");
+      this.message = '';
     },
     async selectPokedex() {
       //find the pokedex with the matching name as the selected pokedex

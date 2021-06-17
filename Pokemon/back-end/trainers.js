@@ -195,7 +195,6 @@ router.delete("/", validTrainer, async (req, res) => {
 
 // update a trainers pokedex
 router.put('/pokedex',validTrainer, async (req, res) => {
-    console.log("Updating trainer pokedex...");
     try {
         const query = {_id: req.body.user._id};
         const updateDocument = {
