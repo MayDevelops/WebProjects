@@ -4,7 +4,8 @@ const router = express.Router();
 
 const pokedexSchema = new mongoose.Schema({
     trainer: String,
-    pokedex: []
+    pokedex: Array,
+    name: String
 })
 
 const Pokedex = mongoose.model('Pokedex', pokedexSchema);
@@ -44,6 +45,8 @@ router.post('/register/:id', async (req, res) => {
     //creating a pokedex attached to the usersID, that big object number in the mongo db
     const pokedex = new Pokedex({
         trainer: req.body.user,
+        name: (req.body.name ? req.body.name : 'My First Pokedex'),
+        pokedex: []
     });
     try {
         await pokedex.save();

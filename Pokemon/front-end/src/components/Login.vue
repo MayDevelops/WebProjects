@@ -61,18 +61,11 @@ export default {
           username: this.username,
           password: this.password,
         });
-        this.$root.$data.user = trainerResponse.data.user;
+        this.$root.$data.trainer = trainerResponse.data.trainer;
 
-        try {
-          await axios.post('/api/pokedex/register/' + this.$root.$data.user._id, {
-            user: this.$root.$data.user
-          });
-        } catch (error) {
-          console.log('Failed to create new trainer pokedex');
-        }
       } catch (error) {
         this.error = error.response.data.message;
-        this.$root.$data.user = null;
+        this.$root.$data.trainer = null;
       }
     },
     async login() {
@@ -81,14 +74,17 @@ export default {
       if (!this.usernameLogin || !this.passwordLogin)
         return;
       try {
-        let response = await axios.post('/api/trainers/login', {
+        let trainerResponse = await axios.post('/api/trainers/login', {
           username: this.usernameLogin,
           password: this.passwordLogin,
         });
-        this.$root.$data.user = response.data.user;
+        this.$root.$data.trainer = trainerResponse.data.trainer;
+
       } catch (error) {
+        console.log(error);
+
         this.errorLogin = "Error: " + error.response.data.message;
-        this.$root.$data.user = null;
+        this.$root.$data.trainer = null;
       }
     },
   }

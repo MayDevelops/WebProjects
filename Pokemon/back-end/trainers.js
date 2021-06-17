@@ -15,6 +15,7 @@ const trainerSchema = new mongoose.Schema({
     lastName: String,
     username: String,
     password: String,
+    pokedexes: Array
 });
 
 // This is a hook that will be called before a user record is saved,
@@ -101,22 +102,16 @@ const validTrainer = async (req, res, next) => {
 
 // create a new user
 router.post('/', async (req, res) => {
-    // Make sure that the form coming from the browser includes all required fields,
-    // otherwise return an error. A 400 error means the request was
-    // malformed.
     if (!req.body.firstName || !req.body.lastName || !req.body.username || !req.body.password)
         return res.status(400).send({
             message: "first name, last name, username and password are required"
         });
 
     try {
-
-        //  Check to see if username already exists and if not send a 403 error. A 403
-        // error means permission denied.
-        const existingUser = await Trainer.findOne({
+        const existingTrainer = await Trainer.findOne({
             username: req.body.username
         });
-        if (existingUser)
+        if (existingTrainer)
             return res.status(403).send({
                 message: "username already exists"
             });
@@ -126,15 +121,17 @@ router.post('/', async (req, res) => {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
+            pokedexes: [{
+                name: "My First Pokedex",
+                pokedex: []
+            }]
         });
         await trainer.save();
-        // set trainer session info
         req.session.userID = trainer._id;
 
-        // send back a 200 OK response, along with the trainer that was created
         return res.send({
-            user: trainer
+            trainer: trainer
         });
     } catch (error) {
         console.log(error);
@@ -142,36 +139,29 @@ router.post('/', async (req, res) => {
     }
 });
 
-// login a user
+// login a trainer
 router.post('/login', async (req, res) => {
-    // Make sure that the form coming from the browser includes a username and a
-    // password, otherwise return an error.
     if (!req.body.username || !req.body.password)
         return res.sendStatus(400);
 
     try {
-        //  lookup trainer record
         const trainer = await Trainer.findOne({
             username: req.body.username
         });
-        // Return an error if trainer does not exist.
         if (!trainer)
             return res.status(403).send({
                 message: "username or password is wrong"
             });
 
-        // Return the SAME error if the password is wrong. This ensure we don't
-        // leak any information about which users exist.
         if (!await trainer.comparePassword(req.body.password))
             return res.status(403).send({
                 message: "username or password is wrong"
             });
 
-        // set trainer session info
         req.session.userID = trainer._id;
 
         return res.send({
-            user: trainer
+            trainer: trainer
         });
 
     } catch (error) {
@@ -203,6 +193,21 @@ router.delete("/", validTrainer, async (req, res) => {
     }
 });
 
+// update a trainers pokedex
+router.put('/pokedex',validTrainer, async (req, res) => {
+    console.log("Updating trainer pokedex...");
+    try {
+        const query = {_id: req.body.user._id};
+        const updateDocument = {
+            $set: {'pokedexes': req.body.pokedexes}
+        }
+        const result = await Trainer.updateOne(query, updateDocument);
+        return res.send(result);
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(500);
+    }
+});
 
 module.exports = {
     routes: router,

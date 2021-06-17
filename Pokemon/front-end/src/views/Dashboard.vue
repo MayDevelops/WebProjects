@@ -1,32 +1,32 @@
 <template>
   <div class="dashboard">
-    <MyPokemonCards v-if="user"/>
+    <MyPokemon v-if="user"/>
     <Login v-else/>
   </div>
 </template>
 
 <script>
-import MyPokemonCards from "@/components/MyPokemonCards";
+import MyPokemon from "@/components/MyPokemon";
 import Login from "@/components/Login";
 import axios from "axios";
 
 export default {
   name: 'dashboard',
   components: {
-    MyPokemonCards,
+    MyPokemon,
     Login,
   },
   async created() {
     try {
       let response = await axios.get('/api/trainers');
-      this.$root.$data.user = response.data.user;
+      this.$root.$data.trainer = response.data.user;
     } catch (error) {
-      this.$root.$data.user = null;
+      this.$root.$data.trainer = null;
     }
   },
   computed: {
     user() {
-      return this.$root.$data.user;
+      return this.$root.$data.trainer;
     }
   }
 }

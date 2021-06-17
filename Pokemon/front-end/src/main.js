@@ -15,10 +15,12 @@ Vue.use(IconsPlugin)
 
 Vue.config.productionTip = false
 
+
+
 let data = {
-  user: null,
+  trainer: null,
   cards: null,
-  pokedex: []
+  selector: 0
 }
 
 new Vue({

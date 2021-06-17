@@ -10,7 +10,7 @@ import axios from "axios";
 import SinglePoke from "@/components/SinglePoke";
 
 export default {
-  name: 'photo',
+  name: 'poke',
 
   components: {SinglePoke},
 
