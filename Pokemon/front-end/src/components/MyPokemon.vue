@@ -1,9 +1,6 @@
 <template>
   <div class="main">
-    <div class="menu">
-      <h2><strong>Log Out - </strong> {{ user.firstName }} {{ user.lastName }} <a @click="logout"><i
-          class="fas fa-sign-out-alt hover"></i></a></h2>
-    </div>
+
 
     <PokedexNavigator v-on:syncDex="sync"/>
 
@@ -39,14 +36,7 @@ export default {
     }
   },
   methods: {
-    async logout() {
-      try {
-        await axios.delete("/api/trainers");
-        this.$root.$data.trainer = null;
-      } catch (error) {
-        this.$root.$data.trainer = null;
-      }
-    },
+
     async sync() {
       if (this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex.length === 0) {
         this.myPokedex = [];

@@ -40,10 +40,16 @@
 
         </div>
 
+        <div class="menu">
+          <h2><strong>Log Out - </strong> {{ user.firstName }} {{ user.lastName }} <a @click="logout"><i
+              class="fas fa-sign-out-alt hover"></i></a></h2>
+        </div>
+
       </div>
     </Slide>
 
-    <h1>Selected Pokedex: {{ currentPokedexName }}</h1>
+    <h1 class="center">{{ currentPokedexName }}</h1>
+    <h1 class="shortBorder"></h1>
 
   </div>
 
@@ -152,6 +158,14 @@ export default {
       this.selectedPokedex = this.$root.$data.trainer.pokedexes[this.$root.$data.selector].name;
 
     },
+    async logout() {
+      try {
+        await axios.delete("/api/trainers");
+        this.$root.$data.trainer = null;
+      } catch (error) {
+        this.$root.$data.trainer = null;
+      }
+    },
   },
   async created() {
     try {
@@ -167,6 +181,18 @@ export default {
 </script>
 
 <style>
+
+.center {
+  font-size: 3.5em;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.shortBorder {
+margin-left: 25%;
+  border-bottom: 2px solid black;
+  width: 50%;
+}
 
 .sliderWrapper {
   width: 100%;
@@ -189,15 +215,6 @@ border-radius: 10px;
 background: #373a47;
 }
 
-.listGroup {
-}
-
-.listGroupItem {
-
-}
-
-.listGroupItem:hover {
-}
 
 .bm-burger-button {
   position: fixed;
@@ -225,8 +242,6 @@ background: #373a47;
 .bm-cross {
   background: #F2921D;
 
-
-
 }
 .bm-cross-button {
   height: 24px;
@@ -245,8 +260,9 @@ background: #373a47;
   transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
 }
 
+ /*Can change the last value to 0.3 to create the grey overlay*/
 .bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0);
 }
 .bm-item-list {
   color: #b8b7ad;
