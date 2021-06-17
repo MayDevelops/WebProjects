@@ -7,7 +7,8 @@
         </div>
         <div class="sliderPokedexes">
           <b-list-group class="listGroup">
-            <b-list-group-item class="listGroupItem" button @click="selectPokedex(pokedex.name)" v-for="pokedex in allPokedexes"
+            <b-list-group-item class="listGroupItem" button @click="selectPokedex(pokedex.name)"
+                               v-for="pokedex in allPokedexes"
                                v-bind:key="pokedex._id">{{ pokedex.name }}
             </b-list-group-item>
           </b-list-group>
@@ -37,11 +38,10 @@
           <br>
           <button type="submit" class="createButton" @click.prevent="deletePokedex()">Delete
           </button>
-
         </div>
 
         <div class="menu">
-          <h2><strong>Log Out - </strong> {{ user.firstName }} {{ user.lastName }} <a @click="logout"><i
+          <h2 class="menuText">Log Out - {{ user.firstName }} {{ user.lastName }} <a @click="logout"><i
               class="fas fa-sign-out-alt hover"></i></a></h2>
         </div>
 
@@ -126,8 +126,8 @@ export default {
     },
 
     async deletePokedex() {
-      for(let i = 0; i < this.$root.$data.trainer.pokedexes.length; i++) {
-        if(this.$root.$data.trainer.pokedexes[i].name === this.selectedPokedex) {
+      for (let i = 0; i < this.$root.$data.trainer.pokedexes.length; i++) {
+        if (this.$root.$data.trainer.pokedexes[i].name === this.selectedPokedex) {
           this.$root.$data.trainer.pokedexes.splice(i, 1);
           break;
         }
@@ -189,7 +189,7 @@ export default {
 }
 
 .shortBorder {
-margin-left: 25%;
+  margin-left: 25%;
   border-bottom: 2px solid black;
   width: 50%;
 }
@@ -199,20 +199,20 @@ margin-left: 25%;
 }
 
 .sliderPokedexTitle {
-justify-self: left;
+  justify-self: left;
   color: #F2921D;
 }
 
 .createButton {
-text-align: center;
+  text-align: center;
   width: 50%;
-  background: rgba(0,0,0,0.84);
+  background: rgba(0, 0, 0, 0.84);
   color: #F2921D;
-border-radius: 10px;
+  border-radius: 10px;
 }
 
 .sliderPokedexes {
-background: #373a47;
+  background: #373a47;
 }
 
 
@@ -224,29 +224,35 @@ background: #373a47;
   top: 36px;
   cursor: pointer;
 }
+
 .bm-burger-bars {
   background-color: #373a47;
 }
+
 .line-style {
   position: absolute;
   height: 20%;
   left: 0;
   right: 0;
 }
+
 .cross-style {
   position: absolute;
   top: 12px;
   right: 2px;
   cursor: pointer;
 }
+
 .bm-cross {
   background: #F2921D;
 
 }
+
 .bm-cross-button {
   height: 24px;
   width: 24px;
 }
+
 .bm-menu {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
@@ -260,25 +266,44 @@ background: #373a47;
   transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
 }
 
- /*Can change the last value to 0.3 to create the grey overlay*/
+/*Can change the last value to 0.3 to create the grey overlay*/
 .bm-overlay {
   background: rgba(0, 0, 0, 0);
 }
+
 .bm-item-list {
   color: #b8b7ad;
   font-size: 20px;
-  margin:0;
+  margin: 0;
 
 }
+
 .bm-item-list > * {
   display: inline-block;
   text-decoration: none;
-  margin:0;
-align-content: flex-start;
+  margin: 0;
+  align-content: flex-start;
 }
+
 .bm-item-list > * > span {
   font-weight: 700;
   color: white;
+}
+
+.menuText {
+  font-size: 1.5em;
+}
+
+.hover {
+  cursor: pointer;
+}
+
+.fas {
+  font-size: 1em;
+}
+
+.fa-sign-out-alt {
+  color: #F2921D;
 }
 
 </style>
