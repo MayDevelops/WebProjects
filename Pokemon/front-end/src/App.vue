@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div v-if="this.$root.$data.trainer">
-      <h1>Welcome Pokemon Trainer, {{this.$root.$data.trainer.username}}</h1>
+      <h1 style="margin-left: 15px;">Welcome Pokemon Trainer, {{this.$root.$data.trainer.username}}</h1>
     </div>
     <div v-else>
       <h1>Welcome, please sign in to start training!</h1>
@@ -12,7 +12,6 @@
           <b-nav-item to="/dashboard" exact-active-class="active">My Pokemon</b-nav-item>
         </b-nav>
     <router-view/>
-    <Footer/>
   </div>
 </template>
 
@@ -72,8 +71,6 @@ h2 {
 }
 </style>
 <script>
-import Footer from "@/components/Footer";
 export default {
-  components: {Footer}
 }
 </script>

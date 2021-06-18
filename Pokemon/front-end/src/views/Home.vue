@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h1>All Pokemon</h1>
     <div class="pokeWrapper">
+      <h1>All Pokemon</h1>
       <div class="search">
         <form class="pure-form">
           <img :src="image" style="width: 45px; height: 45px; margin-right: 10px;">
@@ -78,4 +78,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.pokeWrapper {
+  margin-left: 15px;
+}
+</style>
 
