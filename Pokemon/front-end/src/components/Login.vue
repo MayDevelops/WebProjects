@@ -1,10 +1,7 @@
 <template>
   <div class="loginPage">
     <div class="loginElements">
-
-
       <div v-if="!registerUser">
-
         <b-card
             border-variant="primary"
             header="Login"
@@ -14,14 +11,14 @@
         >
           <input placeholder="username" v-model="usernameLogin">
           <input type="password" placeholder="password" v-model="passwordLogin">
-          <button type="submit" class="pure-button pure-button-primary" @click.prevent="login">Login</button>
+          <button type="submit" class="pure-button" @click.prevent="login">Login</button>
         </b-card>
+        <hr>
         <span @click="registerUser = !registerUser" v-if="!registerUser" class="pure-form">Register Here</span>
         <p v-if="errorLogin" class="error">{{ errorLogin }}</p>
       </div>
 
       <div v-if="registerUser">
-
         <b-card
             border-variant="primary"
             header="Register"
@@ -31,8 +28,9 @@
         >
           <input placeholder="username" v-model="username">
           <input type="password" placeholder="password" v-model="password">
-          <button type="submit" class="pure-button pure-button-primary" @click.prevent="register">Register</button>
+          <button type="submit" class="pure-button" @click.prevent="register">Register</button>
         </b-card>
+        <hr>
         <span @click="registerUser = !registerUser" v-if="registerUser" class="pure-form">Login Here</span>
         <p v-if="error" class="error">{{ error }}</p>
       </div>
@@ -100,10 +98,6 @@ export default {
 </script>
 
 <style scoped>
-.space-above {
-  margin-top: 50px;
-}
-
 h1 {
   font-size: 28px;
   /*noinspection CssInvalidPropertyValue*/
