@@ -4,7 +4,6 @@
   </div>
 </template>
 
-
 <script>
 import axios from "axios";
 import SinglePoke from "@/components/SinglePoke";
@@ -22,10 +21,5 @@ export default {
       this.error = error.response.data.message;
     }
   },
-  computed: {
-    currentPhoto() {
-      return this.$root.$data.cards;
-    }
-  }
 }
 </script>

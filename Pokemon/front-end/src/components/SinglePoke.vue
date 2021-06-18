@@ -35,7 +35,10 @@
           <b-tbody>
             <b-tr>
               <div v-for="type in card.types" v-bind:key="type.id">
-                <b-td>{{ card.types[type.slot - 1].type.name.charAt(0).toUpperCase() + card.types[type.slot - 1].type.name.slice(1) }}</b-td>
+                <b-td>{{
+                    card.types[type.slot - 1].type.name.charAt(0).toUpperCase() + card.types[type.slot - 1].type.name.slice(1)
+                  }}
+                </b-td>
               </div>
             </b-tr>
           </b-tbody>
@@ -87,7 +90,7 @@ export default {
   methods: {
     async add() {
       let currentDex = this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex;
-      if(currentDex === undefined) {
+      if (currentDex === undefined) {
         currentDex = [];
       }
       this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex = [...currentDex, this.$route.params.id];
@@ -107,7 +110,6 @@ export default {
           break;
         }
       }
-  console.log(JSON.stringify(this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex));
 
       try {
         await axios.put('/api/trainers/pokedex', {
@@ -127,7 +129,6 @@ export default {
       this.card.sprite.normal = response.data.sprite.normal;
       this.card.sprite.HD = response.data.sprite.HD;
       this.card.types = response.data.types;
-
     } catch (error) {
       this.error = error.response.data.message;
     }
@@ -137,10 +138,6 @@ export default {
 </script>
 
 <style scoped>
-/*.space-above {*/
-/*  margin-top: 50px;*/
-/*}*/
-
 h1 {
   font-size: 28px;
   /*noinspection CssInvalidPropertyValue*/
@@ -168,20 +165,6 @@ h1 {
 
 input {
   margin-right: 10px;
-}
-
-/*.error {*/
-/*  margin-top: 10px;*/
-/*  display: inline;*/
-/*  padding: 5px 20px;*/
-/*  border-radius: 30px;*/
-/*  font-size: 10px;*/
-/*  background-color: #d9534f;*/
-/*  color: #fff;*/
-/*}*/
-
-.photoInfo {
-  font-size: larger;
 }
 
 .title {

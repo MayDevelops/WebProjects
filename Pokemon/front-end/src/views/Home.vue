@@ -17,7 +17,6 @@
       <p>Please Create an Account or Login to Train Your Pokemon!</p>
     </template>
 
-
   </div>
 </template>
 
@@ -65,13 +64,11 @@ export default {
           },
           types: card.types,
         }
-
         await axios.post("/api/pokes", poke);
       }
     },
     async getCards() {
       try {
-        //edit this for only cards of the trainer?!
         let response = await axios.get("/api/pokes/all");
         this.cards = response.data;
       } catch (error) {

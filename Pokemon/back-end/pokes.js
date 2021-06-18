@@ -27,13 +27,10 @@ const pokeSchema = new mongoose.Schema({
     types: [],
 });
 
-
 const Poke = mongoose.model('Poke', pokeSchema);
-
 
 // upload pokemon
 router.post("/", validUser, upload.single('poke'), async (req, res) => {
-    // check parameters
     if (!req.body)
         return res.status(400).send({
             message: "Body is empty."
@@ -98,7 +95,6 @@ router.get("/:id", async (req, res) => {
         return res.sendStatus(500);
     }
 });
-
 
 module.exports = {
     model: Poke,

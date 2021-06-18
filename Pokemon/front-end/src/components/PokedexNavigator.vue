@@ -15,6 +15,7 @@
         </div>
 
         <hr>
+
         <div class="sliderPokedexTitle">
           <span>Create:</span>
           <input v-model="createText" placeholder="Pokedex Name">
@@ -174,7 +175,6 @@ export default {
     } catch (error) {
       this.$root.$data.pokedex = null;
     }
-
     this.selectedPokedex = this.$root.$data.trainer.pokedexes[this.$root.$data.selector].name;
   }
 }
@@ -214,7 +214,6 @@ export default {
 .sliderPokedexes {
   background: #373a47;
 }
-
 
 .bm-burger-button {
   position: fixed;
@@ -305,5 +304,4 @@ export default {
 .fa-sign-out-alt {
   color: #F2921D;
 }
-
 </style>

@@ -1,11 +1,7 @@
 <template>
   <div class="main">
-
-
     <PokedexNavigator v-on:syncDex="sync"/>
-
     <PokemonGallery :poke="myPokedex"/>
-
     <p v-if="error">{{ error }}</p>
   </div>
 </template>
@@ -14,7 +10,6 @@
 import axios from 'axios';
 import PokemonGallery from "@/components/PokemonGallery";
 import PokedexNavigator from "@/components/PokedexNavigator";
-
 
 export default {
   name: 'MyPokemon',
@@ -38,7 +33,6 @@ export default {
     }
   },
   methods: {
-
     async sync() {
       if (this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex.length === 0) {
         this.myPokedex = [];
@@ -72,16 +66,7 @@ export default {
 </script>
 
 <style scoped>
-.menu {
-  display: flex;
-  justify-content: space-between;
-}
-
 .menu h2 {
   font-size: 14px;
-}
-
-.hover {
-  cursor: pointer;
 }
 </style>

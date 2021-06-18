@@ -3,9 +3,9 @@
     <div class="pokes">
       <div class="poke" v-for="poke in poke" :key="poke.id">
         <router-link :to="{ name: 'Photo', params: { id: poke._id }}"><img :src="poke.sprite.normal">
-        <div class="pokeName">
-          <h1>{{ poke.name.charAt(0).toUpperCase() + poke.name.slice(1) }}</h1>
-        </div>
+          <div class="pokeName">
+            <h1>{{ poke.name.charAt(0).toUpperCase() + poke.name.slice(1) }}</h1>
+          </div>
         </router-link>
       </div>
     </div>
@@ -50,13 +50,6 @@ export default {
   border-radius: 10px;
 }
 
-/*.pokeName {*/
-/*  background: #F2921D;*/
-/*  color: #000;*/
-/*  padding: 10px 30px;*/
-/*  height: 80px;*/
-/*}*/
-
 .pokeName h1 {
   font-size: 16px;
   position: relative;
@@ -72,10 +65,5 @@ export default {
 .pokeName p {
   margin: 0px;
   font-size: 10px;
-}
-
-
-.auto {
-  margin-left: auto;
 }
 </style>
