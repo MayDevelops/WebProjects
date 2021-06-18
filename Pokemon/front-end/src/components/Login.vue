@@ -17,6 +17,7 @@
           <button type="submit" class="pure-button pure-button-primary" @click.prevent="login">Login</button>
         </b-card>
         <span @click="registerUser = !registerUser" v-if="!registerUser" class="pure-form">Register Here</span>
+        <p v-if="errorLogin" class="error">{{ errorLogin }}</p>
       </div>
 
       <div v-if="registerUser">
@@ -33,7 +34,7 @@
           <button type="submit" class="pure-button pure-button-primary" @click.prevent="register">Register</button>
         </b-card>
         <span @click="registerUser = !registerUser" v-if="registerUser" class="pure-form">Login Here</span>
-
+        <p v-if="error" class="error">{{ error }}</p>
       </div>
 
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="title">
       <div class="loginElements">
         <div class="pokeTitle">
@@ -21,7 +22,14 @@
             </b-row>
           </b-container>
 
+          <p v-if="error" class="error">{{ error }}</p>
+          <p v-if="success" class="success">{{ success }}</p>
+
           <hr>
+
+          <div class="pokeballSelection">
+            <b-form-select v-model="selected" :options="options"></b-form-select>
+          </div>
 
         </div>
       </div>
@@ -55,6 +63,14 @@ export default {
   name: "SinglePoke",
   data() {
     return {
+      selected: null,
+      options: [
+        {value: null, text: 'Please select a Pokeball to catch your pokemon with'},
+        {value: 'Poke Ball', text: 'Poke Ball - lower chance of success to catch'},
+        {value: 'Great Ball', text: 'Great Ball - Higher chance of success to catch'},
+        {value: 'Ultra Ball', text: 'Ultra Ball - Much higher chance of success to catch'},
+        {value: 'Master Ball', text: 'Master Ball - 100% catch rate'},
+      ],
       card: {
         id: 0,
         name: '',
@@ -66,6 +82,8 @@ export default {
       },
       pokedex: [],
       times: 0,
+      error: '',
+      success: ''
     }
   },
   computed: {
@@ -85,25 +103,66 @@ export default {
         }
       }
       return thisTimes;
-    }
+    },
   },
   methods: {
     async add() {
-      let currentDex = this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex;
-      if (currentDex === undefined) {
-        currentDex = [];
+      const ball = this.selected;
+
+      if (ball === null) {
+        this.error = "Oh No! Please select a Pokeball to try and catch the Pokemon!";
+        return;
       }
-      this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex = [...currentDex, this.$route.params.id];
-      try {
-        await axios.put('/api/trainers/pokedex', {
-          user: this.$root.$data.trainer,
-          pokedexes: this.$root.$data.trainer.pokedexes
-        });
-      } catch (error) {
-        console.log(error);
+
+      let caught = false;
+      let chance = 0;
+
+      if (ball === 'Poke Ball') {
+        chance = Math.random() - .65;
+        if (chance > 0) {
+          caught = true;
+        }
+      } else if (ball === 'Great Ball') {
+        chance = Math.random() - .35;
+        if (chance > 0) {
+          caught = true;
+        }
+      } else if (ball === 'Ultra Ball') {
+        chance = Math.random() - .25;
+        if (chance > 0) {
+          caught = true;
+        }
+      } else if (ball === 'Master Ball') {
+        caught = true;
+      }
+
+      if (caught) {
+        this.error = '';
+        this.success = 'Gotcha!';
+
+
+        let currentDex = this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex;
+        if (currentDex === undefined) {
+          currentDex = [];
+        }
+        this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex = [...currentDex, this.$route.params.id];
+        try {
+          await axios.put('/api/trainers/pokedex', {
+            user: this.$root.$data.trainer,
+            pokedexes: this.$root.$data.trainer.pokedexes
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        this.success = '';
+        this.error = "It was so close! Throw another one!";
       }
     },
     async release() {
+      this.success = '';
+      this.error = '';
+
       for (let i = 0; i < this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex.length; i++) {
         if (this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex[i] === this.$route.params.id) {
           this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex.splice(i, 1);
@@ -119,7 +178,7 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    }
+    },
   },
   async created() {
     try {
@@ -184,5 +243,21 @@ input {
 
 .types {
   padding-left: 50px;
+}
+
+.pokeballSelection {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 25px;
+}
+
+.success {
+  color: forestgreen;
+  font-size: 35px;
 }
 </style>
