@@ -1,5 +1,5 @@
 <template>
-  <div class="photo">
+  <div class="poke">
     <SinglePoke/>
   </div>
 </template>

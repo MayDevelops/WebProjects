@@ -4,7 +4,7 @@
       <h1>Welcome Pokemon Trainer, {{this.$root.$data.trainer.username}}</h1>
     </div>
     <div v-else>
-      <h1>Welcome, please sign to start training!</h1>
+      <h1>Welcome, please sign in to start training!</h1>
     </div>
 
         <b-nav tabs>

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "@/views/Home";
 import Dashboard from "@/views/Dashboard";
-import Photo from "@/views/Poke";
+import Poke from "@/views/Poke";
 
 Vue.use(VueRouter)
 
@@ -19,8 +19,8 @@ const routes = [
     },
     {
         path: '/pokes/:id',
-        name: 'Photo',
-        component: Photo
+        name: 'Poke',
+        component: Poke
     }
 ]
 

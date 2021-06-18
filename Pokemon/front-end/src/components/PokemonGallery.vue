@@ -2,7 +2,7 @@
   <div class="pokeWrapper">
     <div class="pokes">
       <div class="poke" v-for="poke in poke" :key="poke.id">
-        <router-link :to="{ name: 'Photo', params: { id: poke._id }}"><img :src="poke.sprite.normal">
+        <router-link :to="{ name: 'Poke', params: { id: poke._id }}"><img :src="poke.sprite.normal">
           <div class="pokeName">
             <h1>{{ poke.name.charAt(0).toUpperCase() + poke.name.slice(1) }}</h1>
           </div>
