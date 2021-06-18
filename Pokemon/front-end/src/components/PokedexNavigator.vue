@@ -2,49 +2,103 @@
   <div>
     <Slide right>
       <div class="sliderWrapper">
-        <div class="sliderPokedexTitle">
-          <span>Pokedexes:</span>
-        </div>
-        <div class="sliderPokedexes">
-          <b-list-group class="listGroup">
-            <b-list-group-item class="listGroupItem" button @click="selectPokedex(pokedex.name)"
-                               v-for="pokedex in allPokedexes"
-                               v-bind:key="pokedex._id">{{ pokedex.name }}
-            </b-list-group-item>
-          </b-list-group>
-        </div>
+        <!--        <div class="sliderPokedexTitle">-->
+        <!--          <span>Pokedexes:</span>-->
+        <!--        </div>-->
+        <!--        <div class="sliderPokedexes">-->
+        <!--          <b-list-group class="listGroup">-->
+        <!--            <b-list-group-item class="listGroupItem" button @click="selectPokedex(pokedex.name)"-->
+        <!--                               v-for="pokedex in allPokedexes"-->
+        <!--                               v-bind:key="pokedex._id">{{ pokedex.name }}-->
+        <!--            </b-list-group-item>-->
+        <!--          </b-list-group>-->
+        <!--        </div>-->
 
-        <hr>
+        <!--        <hr>-->
 
-        <div class="sliderPokedexTitle">
-          <span>Create:</span>
-          <input v-model="createText" placeholder="Pokedex Name">
-          <button type="submit" class="createButton" @click.prevent="createPokedex(createText)">Create
-          </button>
-        </div>
+        <!--        <div class="sliderPokedexTitle">-->
+        <!--          <span>Create:</span>-->
+        <!--          <input v-model="createText" placeholder="Pokedex Name">-->
+        <!--          <button type="submit" class="createButton" @click.prevent="createPokedex(createText)">Create-->
+        <!--          </button>-->
+        <!--        </div>-->
 
-        <hr>
+        <!--        <hr>-->
 
-        <div class="sliderPokedexTitle">
-          <span>Rename:</span>
-          <input v-model="renameText" placeholder="New Pokedex Name">
-          <button type="submit" class="createButton" @click.prevent="renamePokedex(renameText)">Rename
-          </button>
-        </div>
+        <!--        <div class="sliderPokedexTitle">-->
+        <!--          <span>Rename:</span>-->
+        <!--          <input v-model="renameText" placeholder="New Pokedex Name">-->
+        <!--          <button type="submit" class="createButton" @click.prevent="renamePokedex(renameText)">Rename-->
+        <!--          </button>-->
+        <!--        </div>-->
 
-        <hr>
+        <!--        <hr>-->
 
-        <div class="sliderPokedexTitle">
-          <span>Delete:</span>
-          <br>
-          <button type="submit" class="createButton" @click.prevent="deletePokedex()">Delete
-          </button>
-        </div>
+        <!--        <div class="sliderPokedexTitle">-->
+        <!--          <span>Delete:</span>-->
+        <!--          <br>-->
+        <!--          <button type="submit" class="createButton" @click.prevent="deletePokedex()">Delete-->
+        <!--          </button>-->
+        <!--        </div>-->
 
-        <div class="menu">
-          <h2 class="menuText">Log Out <a @click="logout"><i
-              class="fas fa-sign-out-alt hover"></i></a></h2>
-        </div>
+        <!--        <div class="menu">-->
+        <!--          <h2 class="menuText">Log Out <a @click="logout"><i-->
+        <!--              class="fas fa-sign-out-alt hover"></i></a></h2>-->
+        <!--        </div>-->
+
+        <b-container class="bv-example-row">
+          <b-row>
+            <div class="sliderPokedexTitle">
+              <span>Pokedexes:</span>
+            </div>
+          </b-row>
+          <b-row>
+            <div class="sliderPokedexes">
+              <b-list-group class="listGroup">
+                <b-list-group-item class="listGroupItem" button @click="selectPokedex(pokedex.name)"
+                                   v-for="pokedex in allPokedexes"
+                                   v-bind:key="pokedex._id">{{ pokedex.name }}
+                </b-list-group-item>
+              </b-list-group>
+            </div>
+          </b-row>
+          <hr>
+          <b-row>
+            <div class="sliderPokedexTitle">
+              <span>Create:</span>
+              <input v-model="createText" placeholder="Pokedex Name">
+              <button type="submit" class="createButton" @click.prevent="createPokedex(createText)">Create
+              </button>
+            </div>
+          </b-row>
+          <hr>
+          <b-row>
+            <div class="sliderPokedexTitle">
+              <span>Rename:</span>
+              <input v-model="renameText" placeholder="New Pokedex Name">
+              <button type="submit" class="createButton" @click.prevent="renamePokedex(renameText)">Rename
+              </button>
+            </div>
+          </b-row>
+          <hr>
+          <b-row>
+            <div class="sliderPokedexTitle">
+              <span>Delete:</span>
+              <br>
+              <button type="submit" class="createButton" @click.prevent="deletePokedex()">Delete
+              </button>
+            </div>
+          </b-row>
+          <hr>
+          <b-row>
+            <div class="menu">
+              <h2 class="menuText">Log Out <a @click="logout"><i
+                  class="fas fa-sign-out-alt hover"></i></a></h2>
+            </div>
+          </b-row>
+
+        </b-container>
+
 
       </div>
     </Slide>
@@ -195,7 +249,7 @@ export default {
 }
 
 .sliderWrapper {
-  width: 100%;
+  width: 300px;
   color: #b8b7ad;
   font-size: 20px;
   margin: 0;
