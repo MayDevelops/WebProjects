@@ -52,7 +52,7 @@ export default {
     POPULATE_INITIAL_DATABASE: async function () {
       this.cards = [];
 
-      for (let i = 7; i <= 9; i++) {
+      for (let i = 1; i <= 386; i++) {
         let response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + i);
         let card = response.data;
         const poke = {
