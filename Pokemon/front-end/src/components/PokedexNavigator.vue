@@ -96,12 +96,20 @@
                   class="fas fa-sign-out-alt hover"></i></a></h2>
             </div>
           </b-row>
+          <b-row>
+            <div style="margin-top: 15px;">
+              <a href="https://github.com/MayDevelops/WebProjects/tree/master/Pokemon">
+                <img :src="require('../../public/GitHub-Mark-64px.png')" alt=""/>
+              </a>
+            </div>
+          </b-row>
 
         </b-container>
 
 
       </div>
     </Slide>
+
 
     <h1 class="center">{{ currentPokedexName }}</h1>
     <h1 class="shortBorder"></h1>
@@ -240,6 +248,7 @@ export default {
   font-size: 3.5em;
   margin-bottom: 0;
   padding-bottom: 0;
+  text-align: center;
 }
 
 .shortBorder {
