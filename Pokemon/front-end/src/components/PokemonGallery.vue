@@ -1,89 +1,81 @@
 <template>
-  <div>
-    <section class="pokemon-gallery">
-      <div class="image" v-for="card in cards" v-bind:key="card._id">
-        <router-link :to="{ name: 'Photo', params: { id: card._id }}"><img :src="card.sprite.normal"></router-link>
-          <div class="photoInfo">
-            <p class="photoTitle">{{ card.name.charAt(0).toUpperCase() + card.name.slice(1) }}</p>
-          </div>
+  <div class="pokeWrapper">
+    <div class="pokes">
+      <div class="poke" v-for="poke in poke" :key="poke.id">
+        <router-link :to="{ name: 'Photo', params: { id: poke._id }}"><img :src="poke.sprite.normal">
+        <div class="pokeName">
+          <h1>{{ poke.name.charAt(0).toUpperCase() + poke.name.slice(1) }}</h1>
+        </div>
+        </router-link>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'PokemonGallery',
+  name: 'ProductList',
   props: {
-    cards: Array
+    poke: Array
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 
 <style scoped>
-.photoInfo {
+.pokeWrapper {
   display: flex;
-  font-size: 0.8em;
+  align-items: center;
   justify-content: center;
 }
 
-.photoInfo p {
+.pokes {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.poke {
+  margin: 10px;
+  margin-top: 50px;
+  width: 200px;
+}
+
+.poke img {
+  border: 2px solid #333;
+  height: 250px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/*.pokeName {*/
+/*  background: #F2921D;*/
+/*  color: #000;*/
+/*  padding: 10px 30px;*/
+/*  height: 80px;*/
+/*}*/
+
+.pokeName h1 {
+  font-size: 16px;
+  position: relative;
+  z-index: 100;
+  top: -20px;
+  left: 10px;
+}
+
+.pokeName h2 {
+  font-size: 14px;
+}
+
+.pokeName p {
   margin: 0px;
+  font-size: 10px;
 }
 
-.photoDate {
-  font-size: 0.7em;
-  font-weight: normal;
-}
 
-p {
-  margin: 0px;
-  text-align: center;
-}
-
-/* Masonry */
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-.pokemon-gallery {
-  column-gap: 1em;
-}
-
-.image {
-  margin: 0 0 1.5em;
-  display: inline-block;
-  width: 100%;
-}
-
-.image img {
-  width: 100%;
-}
-
-/* Masonry on large screens */
-@media only screen and (min-width: 1024px) {
-  .pokemon-gallery {
-    column-count: 4;
-  }
-}
-
-/* Masonry on medium-sized screens */
-@media only screen and (max-width: 1023px) and (min-width: 768px) {
-  .pokemon-gallery {
-    column-count: 3;
-  }
-}
-
-/* Masonry on small screens */
-@media only screen and (max-width: 767px) and (min-width: 540px) {
-  .pokemon-gallery {
-    column-count: 2;
-  }
+.auto {
+  margin-left: auto;
 }
 </style>

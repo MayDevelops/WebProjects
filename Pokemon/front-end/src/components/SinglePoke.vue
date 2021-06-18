@@ -35,7 +35,7 @@
           <b-tbody>
             <b-tr>
               <div v-for="type in card.types" v-bind:key="type.id">
-                <b-td>{{ card.types[type.slot - 1].type.name }}</b-td>
+                <b-td>{{ card.types[type.slot - 1].type.name.charAt(0).toUpperCase() + card.types[type.slot - 1].type.name.slice(1) }}</b-td>
               </div>
             </b-tr>
           </b-tbody>

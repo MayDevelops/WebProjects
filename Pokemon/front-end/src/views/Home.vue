@@ -1,17 +1,17 @@
 <template>
   <div class="home">
     <h1>All Pokemon</h1>
-    <div class="wrapper">
+    <div class="pokeWrapper">
       <div class="search">
         <form class="pure-form">
-          <i class="fas fa-search"></i><input v-model="searchText"/>
+          <img :src="image" style="width: 45px; height: 45px; margin-right: 10px;">
+          <i class="fas"></i><input placeholder="Find a Pokemon" v-model="searchText"/>
         </form>
       </div>
     </div>
     <p v-if="error">{{ error }}</p>
     <template v-if="cards.length > 0">
-<!--      <pokemon-gallery :cards="cards"/>-->
-      <ProductList :products="products"/>
+      <PokemonGallery :poke="pokes"/>
     </template>
     <template v-else>
       <p>Please Create an Account or Login to Train Your Pokemon!</p>
@@ -23,17 +23,17 @@
 
 <script>
 import axios from 'axios';
-// import PokemonGallery from "@/components/PokemonGallery";
-import ProductList from "@/components/ProductList";
+import PokemonGallery from "@/components/PokemonGallery";
+import image from "../assets/pokeball.png"
 
 export default {
   name: 'Home',
   components: {
-    ProductList,
-    // PokemonGallery,
+    PokemonGallery,
   },
   data() {
     return {
+      image: image,
       cards: [],
       error: '',
       searchText: '',
@@ -41,7 +41,7 @@ export default {
     }
   },
   computed: {
-    products() {
+    pokes() {
       return this.cards.filter(product => product.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
     },
   },
@@ -81,3 +81,4 @@ export default {
   }
 }
 </script>
+

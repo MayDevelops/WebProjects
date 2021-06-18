@@ -4,7 +4,8 @@
 
     <PokedexNavigator v-on:syncDex="sync"/>
 
-    <pokemon-gallery :cards="myPokedex"/>
+    <PokemonGallery :poke="myPokedex"/>
+
     <p v-if="error">{{ error }}</p>
   </div>
 </template>
@@ -14,11 +15,12 @@ import axios from 'axios';
 import PokemonGallery from "@/components/PokemonGallery";
 import PokedexNavigator from "@/components/PokedexNavigator";
 
+
 export default {
   name: 'MyPokemon',
   components: {
     PokemonGallery,
-    PokedexNavigator
+    PokedexNavigator,
   },
   data() {
     return {
@@ -53,12 +55,10 @@ export default {
         }
         this.myPokedex = tempCards;
       }
-      console.log('Current Pokedex Name: ' + this.$root.$data.trainer.pokedexes[this.$root.$data.selector].name);
 
     }
   },
   async created() {
-    console.log('Current Pokedex Name: ' + this.$root.$data.trainer.pokedexes[this.$root.$data.selector].name);
     for (let i = 0; i < this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex.length; i++) {
       try {
         let response = await axios.get("/api/pokes/" + this.$root.$data.trainer.pokedexes[this.$root.$data.selector].pokedex[i]);
