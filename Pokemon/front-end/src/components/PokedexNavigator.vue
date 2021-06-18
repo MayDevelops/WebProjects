@@ -42,7 +42,7 @@
         </div>
 
         <div class="menu">
-          <h2 class="menuText">Log Out - {{ user.firstName }} {{ user.lastName }} <a @click="logout"><i
+          <h2 class="menuText">Log Out <a @click="logout"><i
               class="fas fa-sign-out-alt hover"></i></a></h2>
         </div>
 
@@ -196,6 +196,9 @@ export default {
 
 .sliderWrapper {
   width: 100%;
+  color: #b8b7ad;
+  font-size: 20px;
+  margin: 0;
 }
 
 .sliderPokedexTitle {
@@ -303,5 +306,23 @@ export default {
 
 .fa-sign-out-alt {
   color: #F2921D;
+}
+
+.listGroup {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: 0.25rem;
+}
+
+.listGroupItem {
+  position: relative;
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #212529;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 </style>

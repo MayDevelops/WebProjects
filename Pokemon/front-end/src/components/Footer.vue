@@ -1,7 +1,7 @@
 <template>
   <div class="github">
     <div class="center">
-      <a href="https://github.com/MayDevelops/WebProjects/tree/master/lab-5-photo-bomb-MayDevelops">
+      <a href="https://github.com/MayDevelops/WebProjects/tree/master/Pokemon">
         <img :src="require('../../public/GitHub-Mark-64px.png')" alt=""/>
       </a>
     </div>
