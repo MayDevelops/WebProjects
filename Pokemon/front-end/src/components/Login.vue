@@ -1,32 +1,42 @@
 <template>
-  <div class="hero">
-    <div class="heroBox">
-      <form class="pure-form">
-        <fieldset>
-          <legend>Register for an account</legend>
-          <input placeholder="first name" v-model="firstName">
-          <input placeholder="last name" v-model="lastName">
-        </fieldset>
-        <fieldset>
-          <input placeholder="username" v-model="username">
-          <input type="password" placeholder="password" v-model="password">
-        </fieldset>
-        <fieldset>
-          <button type="submit" class="pure-button pure-button-primary" @click.prevent="register">Register</button>
-        </fieldset>
-      </form>
-      <p v-if="error" class="error">{{ error }}</p>
-      <form class="pure-form space-above">
-        <fieldset>
-          <legend>Login</legend>
+  <div class="loginPage">
+    <div class="loginElements">
+
+
+      <div v-if="!registerUser">
+
+        <b-card
+            border-variant="primary"
+            header="Login"
+            header-bg-variant="primary"
+            header-text-variant="white"
+            align="center"
+        >
           <input placeholder="username" v-model="usernameLogin">
           <input type="password" placeholder="password" v-model="passwordLogin">
-        </fieldset>
-        <fieldset>
           <button type="submit" class="pure-button pure-button-primary" @click.prevent="login">Login</button>
-        </fieldset>
-      </form>
-      <p v-if="errorLogin" class="error">{{ errorLogin }}</p>
+        </b-card>
+        <span @click="registerUser = !registerUser" v-if="!registerUser" class="pure-form">Register Here</span>
+      </div>
+
+      <div v-if="registerUser">
+
+        <b-card
+            border-variant="primary"
+            header="Register"
+            header-bg-variant="primary"
+            header-text-variant="white"
+            align="center"
+        >
+          <input placeholder="username" v-model="username">
+          <input type="password" placeholder="password" v-model="password">
+          <button type="submit" class="pure-button pure-button-primary" @click.prevent="register">Register</button>
+        </b-card>
+        <span @click="registerUser = !registerUser" v-if="registerUser" class="pure-form">Login Here</span>
+
+      </div>
+
+
     </div>
   </div>
 </template>
@@ -38,8 +48,7 @@ export default {
   name: 'HomePage',
   data() {
     return {
-      firstName: '',
-      lastName: '',
+      registerUser: false,
       username: '',
       password: '',
       usernameLogin: '',
@@ -52,12 +61,10 @@ export default {
     async register() {
       this.error = '';
       this.errorLogin = '';
-      if (!this.firstName || !this.lastName || !this.username || !this.password)
+      if (!this.username || !this.password)
         return;
       try {
         let trainerResponse = await axios.post('/api/trainers', {
-          firstName: this.firstName,
-          lastName: this.lastName,
           username: this.username,
           password: this.password,
         });
@@ -102,21 +109,21 @@ h1 {
   font-variant: capitalize;
 }
 
-.hero {
+.loginPage {
   padding: 120px;
   display: flex;
   justify-content: center;
 }
 
-.heroBox {
+.loginElements {
   text-align: center;
 }
 
-.hero form {
+.loginPage form {
   font-size: 14px;
 }
 
-.hero form legend {
+.loginPage form legend {
   font-size: 20px;
 }
 

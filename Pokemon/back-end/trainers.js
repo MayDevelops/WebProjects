@@ -5,8 +5,6 @@ const argon2 = require("argon2");
 const router = express.Router();
 
 const trainerSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
     username: String,
     password: String,
     pokedexes: Array
@@ -68,9 +66,9 @@ const validTrainer = async (req, res, next) => {
 
 // create a new user
 router.post('/', async (req, res) => {
-    if (!req.body.firstName || !req.body.lastName || !req.body.username || !req.body.password)
+    if (!req.body.username || !req.body.password)
         return res.status(400).send({
-            message: "first name, last name, username and password are required"
+            message: "username and password are both required"
         });
 
     try {
@@ -79,12 +77,10 @@ router.post('/', async (req, res) => {
         });
         if (existingTrainer)
             return res.status(403).send({
-                message: "username already exists"
+                message: "that username already exists"
             });
 
         const trainer = new Trainer({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
             username: req.body.username,
             password: req.body.password,
             pokedexes: [{

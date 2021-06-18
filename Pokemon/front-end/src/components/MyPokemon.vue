@@ -2,6 +2,8 @@
   <div class="main">
     <PokedexNavigator v-on:syncDex="sync"/>
     <PokemonGallery :poke="myPokedex"/>
+    <div class="center" v-if="currentPokedex.length === 0">Pokedex is currently empty, head to the home page to start capturing Pokemon!</div>
+
     <p v-if="error">{{ error }}</p>
   </div>
 </template>

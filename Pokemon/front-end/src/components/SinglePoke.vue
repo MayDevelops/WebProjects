@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="title">
-      <div class="heroBox">
+      <div class="loginElements">
         <div class="pokeTitle">
           <span>{{ card.name.charAt(0).toUpperCase() + card.name.slice(1) }}</span>
         </div>
       </div>
     </div>
-    <div class="hero">
-      <div class="heroBox">
+    <div class="loginPage">
+      <div class="loginElements">
         <img :src="card.sprite.HD" alt="">
 
         <hr>
@@ -16,7 +16,7 @@
         <div v-if="trainer">
           <b-container class="bv-example-row">
             <b-row>
-              <b-col><h1 class="pokeButton" @click="add">ADD</h1></b-col>
+              <b-col><h1 class="pokeButton" @click="add">CATCH</h1></b-col>
               <b-col v-if="numTimes > 0"><h1 class="pokeButton" @click="release()">RELEASE</h1></b-col>
             </b-row>
           </b-container>
@@ -145,21 +145,21 @@ h1 {
   color: black;
 }
 
-.hero {
+.loginPage {
   padding: 100px;
   display: flex;
   justify-content: center;
 }
 
-.heroBox {
+.loginElements {
   text-align: center;
 }
 
-.hero form {
+.loginPage form {
   font-size: 14px;
 }
 
-.hero form legend {
+.loginPage form legend {
   font-size: 20px;
 }
 

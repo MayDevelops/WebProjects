@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-      <h1>Pokemon Trainer</h1>
+    <div v-if="this.$root.$data.trainer">
+      <h1>Welcome Pokemon Trainer, {{this.$root.$data.trainer.username}}</h1>
+    </div>
+    <div v-else>
+      <h1>Welcome, please sign to start training!</h1>
+    </div>
+
         <b-nav tabs>
           <b-nav-item to="/" exact-active-class="active">Home</b-nav-item>
           <b-nav-item to="/dashboard" exact-active-class="active">My Pokemon</b-nav-item>
@@ -15,6 +21,7 @@
 /* red: #e74c3c
  * blue: #277E8E
  */
+
 body {
   font-family: 'Work Sans', sans-serif;
   font-weight: 300;
