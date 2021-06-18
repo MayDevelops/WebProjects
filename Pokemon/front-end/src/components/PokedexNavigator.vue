@@ -42,7 +42,7 @@
         </div>
 
         <div class="menu">
-          <h2 class="menuText">Log Out - {{ user.firstName }} {{ user.lastName }} <a @click="logout"><i
+          <h2 class="menuText">Log Out <a @click="logout"><i
               class="fas fa-sign-out-alt hover"></i></a></h2>
         </div>
 
